@@ -7,7 +7,7 @@ android {
 
     defaultConfig {
         applicationId "com.health"
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -26,6 +26,11 @@ android {
 
 dependencies {
 
+    //Autenticaión DB email
+    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    //Conexión DB
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

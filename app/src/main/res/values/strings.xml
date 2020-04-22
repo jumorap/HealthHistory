@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Health</string>
-    <string name="email">Correo electrónico</string>
-    <string name="pass">Contraseña</string>
-    <string name="resgist">Registrarme</string>
+    <string name="textEmail">Correo electrónico</string>
+    <string name="textPass">Contraseña</string>
+    <string name="btnResgist">Registrarme</string>
 </resources>

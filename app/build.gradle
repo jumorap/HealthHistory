@@ -27,7 +27,7 @@ android {
 dependencies {
 
     //Autenticaión DB email
-    implementation 'com.google.firebase:firebase-auth:19.1.0'
+    implementation 'com.google.firebase:firebase-auth:19.3.0'
     implementation 'com.google.android.gms:play-services-auth:17.0.0'
 
     //Conexión DB

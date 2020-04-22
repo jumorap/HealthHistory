@@ -9,28 +9,34 @@
 
     <Button
         android:id="@+id/regist"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:background="@drawable/darkblueshape"
-        android:textColor="#EEEEEE"
         android:padding="8dp"
         android:text="@string/btnResgist"
+        android:textColor="#EEEEEE"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/pass"
-        app:layout_constraintHorizontal_bias="0.25"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintStart_toStartOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/pass"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/signin"
-        android:layout_width="wrap_content"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/darkblueshape"
+        android:padding="8dp"
         android:text="@string/btnsignin"
+        android:textColor="#EEEEEE"
         app:layout_constraintBottom_toBottomOf="@+id/regist"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toEndOf="@+id/regist"
-        app:layout_constraintTop_toTopOf="@+id/regist"
+        app:layout_constraintEnd_toEndOf="@+id/pass"
+        app:layout_constraintHorizontal_bias="0.85"
+        app:layout_constraintStart_toStartOf="@+id/pass"
+        app:layout_constraintTop_toBottomOf="@+id/pass"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
@@ -58,15 +64,50 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="24dp"
         android:background="@drawable/shape"
         android:ems="10"
         android:hint="@string/textPass"
         android:inputType="textPassword"
         android:padding="8dp"
         android:paddingStart="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/regist"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="© 2020 HEALT HISTORY"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:fontFamily="monospace"
+        android:text="Health History"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Olvidé mi contraseña"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/regist" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

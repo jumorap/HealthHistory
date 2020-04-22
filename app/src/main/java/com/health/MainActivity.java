@@ -3,6 +3,7 @@ package com.health;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void loguearUsusario(){
         //Se convierte a texto el ingreso del correo y la contraseña
-        String email = textEmail.getText().toString().trim();
+        final String email = textEmail.getText().toString().trim();
         String password = textPass.getText().toString().trim();
 
         //Se verifica el estado del ingreso (si está vacío)
@@ -103,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
+                            int pos = email.indexOf("@");
+                            String user = email.substring(0,pos);
+                            Intent intent = new Intent(getApplication(),AccessActivity.class);
+                            intent.putExtra(AccessActivity.user, email);
+                            startActivity(intent);
                         }else {
                             Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
                             }

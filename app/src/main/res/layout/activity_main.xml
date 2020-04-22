@@ -4,40 +4,48 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#609FC8"
     tools:context=".MainActivity">
 
     <Button
         android:id="@+id/regist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/darkblueshape"
+        android:textColor="#EEEEEE"
+        android:padding="8dp"
         android:text="@string/btnResgist"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pass"
+        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/signin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:text="@string/btnsignin"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/regist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/regist"
+        app:layout_constraintStart_toEndOf="@+id/regist"
+        app:layout_constraintTop_toTopOf="@+id/regist"
         app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/shape"
         android:ems="10"
         android:hint="@string/textEmail"
         android:inputType="textEmailAddress"
+        android:padding="8dp"
+        android:paddingStart="20dp"
         app:layout_constraintBottom_toTopOf="@+id/pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,12 +54,17 @@
 
     <EditText
         android:id="@+id/pass"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
+        android:background="@drawable/shape"
         android:ems="10"
         android:hint="@string/textPass"
         android:inputType="textPassword"
+        android:padding="8dp"
+        android:paddingStart="20dp"
         app:layout_constraintBottom_toTopOf="@+id/regist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             int pos = email.indexOf("@");
                             String user = email.substring(0,pos);
                             Intent intent = new Intent(getApplication(),AccessActivity.class);
-                            intent.putExtra(AccessActivity.user, email);
+                            intent.putExtra(AccessActivity.user, user);
                             startActivity(intent);
                         }else {
                             Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();

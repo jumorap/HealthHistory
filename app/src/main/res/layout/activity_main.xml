@@ -7,10 +7,10 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/regist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="@string/resgist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,26 +18,28 @@
         app:layout_constraintVertical_bias="0.61" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editText2"
+        android:text="@string/email"
+        app:layout_constraintBottom_toTopOf="@+id/pass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
         android:ems="10"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        android:text="@string/pass"
+        app:layout_constraintBottom_toTopOf="@+id/regist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

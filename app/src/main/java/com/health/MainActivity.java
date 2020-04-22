@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText textPass;
     private Button btnRegist;
     private Button btnlogin;
+
+    private TextView notif;
 
     //Firebase Auth
     private FirebaseAuth firebaseAuth;
@@ -42,6 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnRegist = (Button) findViewById(R.id.regist);
         btnlogin = (Button) findViewById(R.id.signin);
+
+        notif = (TextView) findViewById(R.id.notif);
 
         //Listener
         btnRegist.setOnClickListener(this);
@@ -70,11 +75,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this,"Se ha registrado exitosamente",Toast.LENGTH_LONG).show();
+                            notif.setText("Se ha registrado exitosamente");
                         }else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(MainActivity.this, "El usuario ya está registrado", Toast.LENGTH_LONG).show();
+                                notif.setText("El usuario ya está registrado");
                             } else {
                                 Toast.makeText(MainActivity.this, "No se ha registrado, verifica tu conexión", Toast.LENGTH_LONG).show();
+                                notif.setText("No se ha registrado, verifica tu conexión");
                             }
                         }
                     }
@@ -90,10 +98,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Se verifica el estado del ingreso (si está vacío)
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Se debe ingresar un email",Toast.LENGTH_LONG).show();
+            notif.setText("Se debe ingresar un email");
             return;
         }
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Se debe ingresar una contraseña",Toast.LENGTH_LONG).show();
+            notif.setText("Se debe ingresar una contraseña");
             return;
         }
 
@@ -109,8 +119,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Intent intent = new Intent(getApplication(),AccessActivity.class);
                             intent.putExtra(AccessActivity.user, user);
                             startActivity(intent);
+                            textEmail.setText("");
+                            textPass.setText("");
+                            notif.setText("Se ha registrado con éxtio, ingrese nuevamente tus credenciales");
                         }else {
                             Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
+                            notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
                             }
                         }
                     });

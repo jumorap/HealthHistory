@@ -3,4 +3,5 @@
     <string name="textEmail">Correo electrónico</string>
     <string name="textPass">Contraseña</string>
     <string name="btnResgist">Registrarme</string>
+    <string name="btnsignin">Iniciar sesión</string>
 </resources>

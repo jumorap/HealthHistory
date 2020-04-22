@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText textEmail;
     private EditText textPass;
     private Button btnRegist;
+    private Button btnlogin;
 
     //Firebase Auth
     private FirebaseAuth firebaseAuth;
@@ -39,9 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textPass = (EditText) findViewById(R.id.pass);
 
         btnRegist = (Button) findViewById(R.id.regist);
+        btnlogin = (Button) findViewById(R.id.signin);
 
         //Listener
         btnRegist.setOnClickListener(this);
+        btnlogin.setOnClickListener(this);
     }
 
     private void registrarUsuario(){
@@ -66,17 +69,56 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this,"Se ha registrado exitosamente",Toast.LENGTH_LONG).show();
-                        }else{
-                            if(task.getException() instanceof FirebaseAuthUserCollisionException)
-                            Toast.makeText(MainActivity.this,"No se ha registrado, verifica tu conexión",Toast.LENGTH_LONG).show();
+                        }else {
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                Toast.makeText(MainActivity.this, "El usuario ya está registrado", Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "No se ha registrado, verifica tu conexión", Toast.LENGTH_LONG).show();
+                            }
                         }
                     }
                 });
 
     }
+
+    private void loguearUsusario(){
+        //Se convierte a texto el ingreso del correo y la contraseña
+        String email = textEmail.getText().toString().trim();
+        String password = textPass.getText().toString().trim();
+
+        //Se verifica el estado del ingreso (si está vacío)
+        if(TextUtils.isEmpty(email)){
+            Toast.makeText(this,"Se debe ingresar un email",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(password)){
+            Toast.makeText(this,"Se debe ingresar una contraseña",Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        //Logueo usuario
+        firebaseAuth.signInWithEmailAndPassword(email,password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
+                            Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
+                        }else {
+                            Toast.makeText(MainActivity.this, "Usuario incorrecto o conexión inestable", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+    }
+
     @Override
     public void onClick(View view){
-        //Se llama el método descrito antes
-        registrarUsuario();
+        switch (view.getId()){
+            case R.id.regist:
+                //Se llama el método descrito antes
+                registrarUsuario();
+                break;
+            case R.id.signin:
+                loguearUsusario();
+        }
     }
 }

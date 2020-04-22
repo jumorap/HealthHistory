@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
                         }else {
-                            Toast.makeText(MainActivity.this, "Usuario incorrecto o conexión inestable", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
                             }
                         }
                     });

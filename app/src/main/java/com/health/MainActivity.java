@@ -18,6 +18,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,6 +38,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Firebase Auth
     private FirebaseAuth firebaseAuth;
 
+    //Database
+    DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //Inicialización firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();//Nodo principal DB
 
         //Referenciar los views
         textEmail = (EditText) findViewById(R.id.email);
@@ -67,16 +76,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void registrarUsuario(){
         //Se convierte a texto el ingreso del correo y la contraseña
-        String email = textEmail.getText().toString().trim();
-        String password = textPass.getText().toString().trim();
+        final String email = textEmail.getText().toString().trim();
+        final String password = textPass.getText().toString().trim();
 
         //Se verifica el estado del ingreso (si está vacío)
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Se debe ingresar un email",Toast.LENGTH_LONG).show();
+            notif.setText("Se debe ingresar un email");
             return;
         }
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this,"Se debe ingresar una contraseña",Toast.LENGTH_LONG).show();
+            notif.setText("Se debe ingresar una contraseña");
+            return;
+        }
+
+        if(password.length()<6){
+            notif.setText("La contraseña debe contener más de 6 caracteres");
             return;
         }
 
@@ -91,7 +107,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             usuario.sendEmailVerification();
                             textEmail.setText("");
                             textPass.setText("");
-                            notif.setText("Se ha registrado con éxtio, VERIFICA TU CORREO e ingrese nuevamente tus credenciales");
+                            notif.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
+
+                            //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
+                            Map<String, Object> map = new HashMap<>();
+                            map.put("email", email);
+                            map.put("password", password);
+
+                            String id = firebaseAuth.getCurrentUser().getUid();
+                            mDatabase.child("Users").child(id).setValue(map);/*.addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> taskB) {
+                                    if(taskB.isSuccessful()){
+                                        startActivity(new Intent(MainActivity.this,AccessActivity.class));
+                                        finish();
+                                    }
+                                }
+                            });*/
+
                         }else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(MainActivity.this, "El usuario ya está registrado", Toast.LENGTH_LONG).show();
@@ -145,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 textEmail.setText("");
                                 textPass.setText("");
                                 notif.setText("Acceso exitoso");
+                                finish();
                             } else {
                                 Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
                                 notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
@@ -166,6 +200,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.signin:
                 loguearUsusario();
+        }
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if(firebaseAuth.getCurrentUser() != null){
+            startActivity(new Intent(MainActivity.this, AccessActivity.class));
+            finish();
         }
     }
 }

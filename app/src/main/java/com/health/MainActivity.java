@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -75,7 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this,"Se ha registrado exitosamente",Toast.LENGTH_LONG).show();
-                            notif.setText("Se ha registrado exitosamente");
+                            FirebaseUser usuario = firebaseAuth.getCurrentUser();
+                            usuario.sendEmailVerification();
+                            textEmail.setText("");
+                            textPass.setText("");
+                            notif.setText("Se ha registrado con éxtio, VERIFICA TU CORREO e ingrese nuevamente tus credenciales");
                         }else {
                             if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                                 Toast.makeText(MainActivity.this, "El usuario ya está registrado", Toast.LENGTH_LONG).show();
@@ -112,20 +117,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this,"Bienvenido",Toast.LENGTH_LONG).show();
-                            int pos = email.indexOf("@");
-                            String user = email.substring(0,pos);
-                            Intent intent = new Intent(getApplication(),AccessActivity.class);
-                            intent.putExtra(AccessActivity.user, user);
-                            startActivity(intent);
-                            textEmail.setText("");
-                            textPass.setText("");
-                            notif.setText("Se ha registrado con éxtio, ingrese nuevamente tus credenciales");
+
+                        FirebaseUser usuario = firebaseAuth.getCurrentUser();
+                        if(!usuario.isEmailVerified()){
+                            Toast.makeText(MainActivity.this, "Correo electrónico no verificado", Toast.LENGTH_LONG).show();
+                            notif.setText("Correo electrónico no verificado");
                         }else {
-                            Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
-                            notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
+
+                            if (task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_LONG).show();
+                                int pos = email.indexOf("@");
+                                String user = email.substring(0, pos);
+                                Intent intent = new Intent(getApplication(), AccessActivity.class);
+                                intent.putExtra(AccessActivity.user, user);
+                                startActivity(intent);
+                                textEmail.setText("");
+                                textPass.setText("");
+                                notif.setText("Acceso exitoso");
+                            } else {
+                                Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
+                                notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
                             }
+                        }
                         }
                     });
     }

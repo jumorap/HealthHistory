@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button btnlogin;
 
     private TextView notif;
+    private TextView resetPassword;
 
     //Firebase Auth
     private FirebaseAuth firebaseAuth;
@@ -48,11 +49,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnlogin = (Button) findViewById(R.id.signin);
 
         notif = (TextView) findViewById(R.id.notif);
+        resetPassword = (TextView) findViewById(R.id.resetPassworda);
 
         //Listener
         btnRegist.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
+
+
+        resetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, ResetPasswordActivity.class));
+            }
+        });
     }
+
 
     private void registrarUsuario(){
         //Se convierte a texto el ingreso del correo y la contraseña
@@ -141,7 +152,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         }
                         }
                     });
+
     }
+
+
 
     @Override
     public void onClick(View view){

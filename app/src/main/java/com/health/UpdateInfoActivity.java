@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+
 public class UpdateInfoActivity extends AppCompatActivity {
 private RadioButton radioGenderMan;
 private RadioButton radioGenderWoman;
@@ -20,7 +23,10 @@ private EditText nameEmergency;
 private EditText phoneEmergency;
 private Button upload;
 
+private FirebaseAuth firebaseAuth;
 
+//Database
+DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,13 +46,21 @@ private Button upload;
         phoneEmergency = (EditText) findViewById(R.id.phoneEmergency);
         upload = (Button) findViewById(R.id.update);
     }
-
-    /*
-    String gender = "genero";
-    if(radioGenderMan.isChecked()){
-        gender = "Masculino";
-    }else if(radioGenderWoman.isChecked()){
-        gender = "Femenino";
+    private void uploadInfo(){
+        String gender = "genero";
+        if(radioGenderMan.isChecked()) gender = "Masculino";
+        else if(radioGenderWoman.isChecked()) gender = "Femenino";
+        String cityR = city.getText().toString().trim();
+        String localR = local.getText().toString().trim();
+        String addressR = address.getText().toString().trim();
+        String birthDayR = birthDay.getText().toString().trim();
+        String civilR = civil.getText().toString().trim();
+        String bloodR = blood.getText().toString().trim();
+        String nameEmergencyR = nameEmergency.getText().toString().trim();
+        String phoneEmergencyR = phoneEmergency.getText().toString().trim();
+        String uploadR = upload.getText().toString().trim();
     }
-     */
+
+
+
 }

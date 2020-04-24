@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     //Objetos visibles
     private EditText textEmail;
     private EditText textPass;
-    private Button btnRegist;
+    private TextView textRegist;
     private Button btnlogin;
 
     private TextView notif;
@@ -54,14 +54,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textEmail = (EditText) findViewById(R.id.email);
         textPass = (EditText) findViewById(R.id.pass);
 
-        btnRegist = (Button) findViewById(R.id.regist);
+        textRegist = (TextView) findViewById(R.id.regist);
         btnlogin = (Button) findViewById(R.id.signin);
 
         notif = (TextView) findViewById(R.id.notif);
         resetPassword = (TextView) findViewById(R.id.resetPassworda);
 
         //Listener
-        btnRegist.setOnClickListener(this);
         btnlogin.setOnClickListener(this);
 
 
@@ -71,73 +70,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(MainActivity.this, ResetPasswordActivity.class));
             }
         });
+
+        textRegist.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));
+                finish();
+            }
+        });
     }
 
 
-    private void registrarUsuario(){
-        //Se convierte a texto el ingreso del correo y la contraseña
-        final String email = textEmail.getText().toString().trim();
-        final String password = textPass.getText().toString().trim();
 
-        //Se verifica el estado del ingreso (si está vacío)
-        if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Se debe ingresar un email",Toast.LENGTH_LONG).show();
-            notif.setText("Se debe ingresar un email");
-            return;
-        }
-        if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Se debe ingresar una contraseña",Toast.LENGTH_LONG).show();
-            notif.setText("Se debe ingresar una contraseña");
-            return;
-        }
-
-        if(password.length()<6){
-            notif.setText("La contraseña debe contener más de 6 caracteres");
-            return;
-        }
-
-        //Inicio de creación
-        firebaseAuth.createUserWithEmailAndPassword(email,password)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(MainActivity.this,"Se ha registrado exitosamente",Toast.LENGTH_LONG).show();
-                            FirebaseUser usuario = firebaseAuth.getCurrentUser();
-                            usuario.sendEmailVerification();
-                            textEmail.setText("");
-                            textPass.setText("");
-                            notif.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
-
-                            //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
-                            Map<String, Object> map = new HashMap<>();
-                            map.put("email", email);
-                            map.put("password", password);
-
-                            String id = firebaseAuth.getCurrentUser().getUid();
-                            mDatabase.child("Users").child(id).setValue(map);/*.addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> taskB) {
-                                    if(taskB.isSuccessful()){
-                                        startActivity(new Intent(MainActivity.this,AccessActivity.class));
-                                        finish();
-                                    }
-                                }
-                            });*/
-
-                        }else {
-                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
-                                Toast.makeText(MainActivity.this, "El usuario ya está registrado", Toast.LENGTH_LONG).show();
-                                notif.setText("El usuario ya está registrado");
-                            } else {
-                                Toast.makeText(MainActivity.this, "No se ha registrado, verifica tu conexión", Toast.LENGTH_LONG).show();
-                                notif.setText("No se ha registrado, verifica tu conexión");
-                            }
-                        }
-                    }
-                });
-
-    }
 
     private void loguearUsusario(){
         //Se convierte a texto el ingreso del correo y la contraseña
@@ -193,14 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view){
-        switch (view.getId()){
-            case R.id.regist:
-                //Se llama el método descrito antes
-                registrarUsuario();
-                break;
-            case R.id.signin:
-                loguearUsusario();
-        }
+        loguearUsusario();
     }
 
     @Override

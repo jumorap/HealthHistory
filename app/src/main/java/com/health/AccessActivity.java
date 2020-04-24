@@ -59,9 +59,9 @@ private DatabaseReference mDatabse ;
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    String email = dataSnapshot.child("email").getValue().toString();
+                    String name = dataSnapshot.child("name").getValue().toString();
 
-                    txtUser.setText(email);
+                    txtUser.setText("Bienvenido, " + name);
                 }
             }
 

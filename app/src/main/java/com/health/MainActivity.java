@@ -128,13 +128,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
                             }
                         }
-                        }
-                    });
-
+                    }
+                });
     }
-
-
-
     @Override
     public void onClick(View view){
         loguearUsusario();

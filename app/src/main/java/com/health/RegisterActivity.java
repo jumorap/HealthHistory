@@ -146,7 +146,6 @@ private TextView textAccount;
                             map.put("phone", phone);
                             map.put("email", email);
                             map.put("password", password);
-
                             String id = firebaseAuth.getCurrentUser().getUid();
                             mDatabase.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

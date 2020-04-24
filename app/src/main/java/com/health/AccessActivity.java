@@ -21,6 +21,7 @@ public class AccessActivity extends AppCompatActivity {
 public static final String user = "names";
 TextView txtUser;
 private ImageButton mSignout;
+private ImageButton updateInfo;
 private FirebaseAuth mAuth;
 private DatabaseReference mDatabse ;
 
@@ -37,6 +38,7 @@ private DatabaseReference mDatabse ;
         mAuth = FirebaseAuth.getInstance();
         mDatabse = FirebaseDatabase.getInstance().getReference();
         mSignout = (ImageButton) findViewById(R.id.btnSignout);
+        updateInfo = (ImageButton) findViewById(R.id.updateInfo);
 
         //Se invoca al método que escribe el correo en el ingreso
         getUserInfo();
@@ -47,6 +49,12 @@ private DatabaseReference mDatabse ;
                 mAuth.signOut();
                 startActivity(new Intent(AccessActivity.this, MainActivity.class));
                 finish();
+            }
+        });
+        updateInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccessActivity.this, UpdateInfoActivity.class));
             }
         });
 

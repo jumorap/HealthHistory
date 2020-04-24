@@ -10,61 +10,168 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+        android:padding="0dp">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingBottom="20dp"
-        android:text="Información escencial"
-        android:textAlignment="center"
-        android:textColor="?android:attr/colorLongPressedHighlight" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="24dp">
 
-    <EditText
-        android:id="@+id/city"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/shape"
-        android:ems="10"
-        android:hint="Ciudad"
-        android:inputType="textPostalAddress"
-        android:padding="8dp"
-        android:paddingStart="20dp" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="20dp"
+                android:text="Información escencial"
+                android:textAlignment="center"
+                android:textColor="?android:attr/colorLongPressedHighlight"
+                android:textSize="20dp" />
 
-    <EditText
-        android:id="@+id/adress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/shape"
-        android:ems="10"
-        android:hint="Dirección"
-        android:inputType="textPostalAddress"
-        android:padding="8dp"
-        android:paddingStart="20dp" />
+            <EditText
+                android:id="@+id/city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="Ciudad"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
 
-    <EditText
-        android:id="@+id/birthDay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/shape"
-        android:ems="10"
-        android:hint="Fecha de nacimiento"
-        android:inputType="textPostalAddress"
-        android:padding="8dp"
-        android:paddingStart="20dp" />
+            <EditText
+                android:id="@+id/local"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="Localidad"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="Dirección"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/birthDay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="Fecha de nacimiento"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/gender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Género" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radioGenderMan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Masculino" />
+
+                <RadioButton
+                    android:id="@+id/radioGenderWoman"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Femenino" />
+            </RadioGroup>
+
+                <EditText
+                    android:id="@+id/civil"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape"
+                    android:ems="10"
+                    android:hint="Estado civil"
+                    android:inputType="textPostalAddress"
+                    android:padding="8dp"
+                    android:paddingStart="20dp"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/blood"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape"
+                    android:ems="10"
+                    android:hint="Grupo sanguineo"
+                    android:inputType="textPostalAddress"
+                    android:padding="8dp"
+                    android:paddingStart="20dp"
+                    android:textSize="16dp" />
+
+                <EditText
+                    android:id="@+id/nameEmergency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape"
+                    android:ems="10"
+                    android:hint="NOMBRE contacto de emergencia"
+                    android:inputType="textPostalAddress"
+                    android:padding="8dp"
+                    android:paddingStart="20dp"
+                    android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/phoneEmergency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="NÚMERO contacto de emergencia"
+                android:inputType="textPostalAddress"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/darkblueshape"
+                android:text="Button" />
+
+
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

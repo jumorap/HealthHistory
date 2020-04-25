@@ -139,8 +139,8 @@ private DatabaseReference mDatabase;
                     String textCirugAdd = dataSnapshot.child("cirugrecord").getValue().toString();
                     String alergicAddYN = dataSnapshot.child("ynalergic").getValue().toString();
                     String textAlergicAdd = dataSnapshot.child("alergicrecord").getValue().toString();
-                    String etsAddYN = dataSnapshot.child("ets").getValue().toString();
-                    String etsAdd = dataSnapshot.child("ets").getValue().toString();
+                    String etsAddYN = dataSnapshot.child("ynets").getValue().toString();
+                    String etsAdd = dataSnapshot.child("etsrecord").getValue().toString();
                     String genderAdd = dataSnapshot.child("gender").getValue().toString();
 
                     if(genderAdd.equals("Masculino")) radioGenderMan.setChecked(true);

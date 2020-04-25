@@ -59,7 +59,7 @@ DatabaseReference mDatabse ;
             }
         });
 
-        noRegisterMessage();
+        //noRegisterMessage();
         //Enviar el id a las otras clases (MUY IMPORTANTE)
 
     }
@@ -89,13 +89,13 @@ DatabaseReference mDatabse ;
         });
     }
 
-    public void noRegisterMessage(){
+    /*public void noRegisterMessage(){
         FirebaseUser usuario = mAuth.getCurrentUser();
         if(!usuario.isEmailVerified()){
             String catched = txtUser.getText().toString();
             txtUser.setText(catched + "\nPor favor haga clic en el lápiz de abajo y complete sus datos médicos");
         }
-    }
+    }*/
 
 
 }

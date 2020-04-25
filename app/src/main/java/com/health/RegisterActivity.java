@@ -47,7 +47,7 @@ private TextView textAccount;
         mDatabase = FirebaseDatabase.getInstance().getReference();//Nodo principal DB
 
         //Rferenciar views
-        txtName = (EditText) findViewById(R.id.textName);
+        txtName = (EditText) findViewById(R.id.textCcA);
         txtLastName = (EditText) findViewById(R.id.textLastName);
         txtCC = (EditText) findViewById(R.id.textCC);
         txtPhone = (EditText) findViewById(R.id.textPhone);
@@ -138,7 +138,7 @@ private TextView textAccount;
                             notifRegist.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
                             Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
                             Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
-                            Toast.makeText(RegisterActivity.this, "Haga clic en el lapíz de abajo y complete su información médica", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Haga clic en el lapíz de arriba y complete su información médica", Toast.LENGTH_LONG).show();
 
                             final String textNull = "";
                             //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
@@ -153,6 +153,7 @@ private TextView textAccount;
                             map.put("local", textNull);
                             map.put("address", textNull);
                             map.put("birthday", textNull);
+                            map.put("ocupa", textNull);
                             map.put("civil", textNull);
                             map.put("blood", textNull);
                             map.put("gender", textNull);

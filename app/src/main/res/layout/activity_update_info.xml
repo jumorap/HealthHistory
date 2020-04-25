@@ -91,6 +91,20 @@
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
 
+            <EditText
+                android:id="@+id/ocupa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="Ocupación actual"
+                android:inputType="text"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
+
             <TextView
                 android:id="@+id/gender"
                 android:layout_width="match_parent"

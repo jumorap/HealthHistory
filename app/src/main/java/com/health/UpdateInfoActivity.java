@@ -33,6 +33,7 @@ private EditText city;
 private EditText local;
 private EditText address;
 private EditText birthDay;
+private EditText ocupa;
 private EditText civil;
 private EditText blood;
 private EditText nameEmergency;
@@ -102,6 +103,7 @@ private DatabaseReference mDatabase;
         local = (EditText) findViewById(R.id.local);
         address = (EditText) findViewById(R.id.address);
         birthDay = (EditText) findViewById(R.id.birthDay);
+        ocupa = (EditText) findViewById(R.id.ocupa);
         civil = (EditText) findViewById(R.id.civil);
         blood = (EditText) findViewById(R.id.blood);
         nameEmergency = (EditText) findViewById(R.id.nameEmergency);
@@ -127,6 +129,7 @@ private DatabaseReference mDatabase;
                     String localAdd = dataSnapshot.child("local").getValue().toString();
                     String addressAdd = dataSnapshot.child("address").getValue().toString();
                     String birthDayAdd = dataSnapshot.child("birthday").getValue().toString();
+                    String ocupaAdd = dataSnapshot.child("ocupa").getValue().toString();
                     String civilAdd = dataSnapshot.child("civil").getValue().toString();
                     String bloodAdd = dataSnapshot.child("blood").getValue().toString();
                     String nameEmergencyAdd = dataSnapshot.child("nameemergency").getValue().toString();
@@ -160,6 +163,7 @@ private DatabaseReference mDatabase;
                     local.setText(localAdd);
                     address.setText(addressAdd);
                     birthDay.setText(birthDayAdd);
+                    ocupa.setText(ocupaAdd);
                     civil.setText(civilAdd);
                     blood.setText(bloodAdd);
                     textCardiac.setText(textCardiacAdd);
@@ -209,6 +213,7 @@ private DatabaseReference mDatabase;
         final String localR = local.getText().toString().trim();
         final String addressR = address.getText().toString().trim();
         final String birthDayR = birthDay.getText().toString().trim();
+        final String ocupaR = ocupa.getText().toString().trim();
         final String civilR = civil.getText().toString().trim();
         final String bloodR = blood.getText().toString().trim();
         final String nameEmergencyR = nameEmergency.getText().toString().trim();
@@ -216,8 +221,8 @@ private DatabaseReference mDatabase;
 
 
 
-        if(gender.isEmpty() || cardiacYN.isEmpty() || cancerYN.isEmpty() || cirugYN.isEmpty() || alergicYN.isEmpty() || cityR.isEmpty() || localR.isEmpty() ||
-        addressR.isEmpty() || birthDayR.isEmpty() || civilR.isEmpty() || bloodR.isEmpty() || nameEmergencyR.isEmpty() || phoneEmergencyR.isEmpty() || etsR.isEmpty()){
+        if(gender.isEmpty() || cardiacYN.isEmpty() || cancerYN.isEmpty() || cirugYN.isEmpty() || alergicYN.isEmpty() || etsYN.isEmpty() || cityR.isEmpty() || localR.isEmpty() ||
+        addressR.isEmpty() || birthDayR.isEmpty() || ocupaR.isEmpty() || civilR.isEmpty() || bloodR.isEmpty() || nameEmergencyR.isEmpty() || phoneEmergencyR.isEmpty()){
             notifCamps.setText("Complete todos los campos necesarios");
             return;
         }
@@ -227,6 +232,7 @@ private DatabaseReference mDatabase;
         mapHash.put("local", localR);
         mapHash.put("address", addressR);
         mapHash.put("birthday", birthDayR);
+        mapHash.put("ocupa", birthDayR);
         mapHash.put("civil", civilR);
         mapHash.put("blood", bloodR);
         mapHash.put("gender", gender);
@@ -238,8 +244,8 @@ private DatabaseReference mDatabase;
         mapHash.put("cirugrecord", cirugR);
         mapHash.put("ynalergic", alergicYN);
         mapHash.put("alergicrecord", alergicR);
-        mapHash.put("ynets", alergicYN);
-        mapHash.put("etsrecord", alergicR);
+        mapHash.put("ynets", etsYN);
+        mapHash.put("etsrecord", etsR);
         mapHash.put("nameemergency", nameEmergencyR);
         mapHash.put("phoneemergency", phoneEmergencyR);
 

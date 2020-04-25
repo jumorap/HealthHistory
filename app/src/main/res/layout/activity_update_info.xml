@@ -289,7 +289,7 @@
                 android:id="@+id/Cardiac"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Tiene alguna alergía?" />
+                android:text="¿Padece de alguna alergía?" />
             <RadioGroup
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -330,11 +330,69 @@
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
 
+
+
+            <TextView
+                android:id="@+id/Ets"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Padece de alguna ETS (Enfermedad de Transmisión Sexual)?" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioYesEts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sí"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <RadioButton
+                    android:id="@+id/radioNoEts"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="No"
+                    app:layout_constraintStart_toEndOf="@+id/radioYesAlergic"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+            </RadioGroup>
+
+
+            <EditText
+                android:id="@+id/textEts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="¿Cuál?"
+                android:inputType="text"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
+
+
+
+            <TextView
+                android:id="@+id/nesxtCamps"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="0dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="0dp"
+                android:text="Los siguientes dos campos se refieren a un contacto de su confianza. Con este se contactará emergencias cuando le ocurra un accidente" />
+
             <EditText
                 android:id="@+id/nameEmergency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shape"
                 android:ems="10"
@@ -362,6 +420,7 @@
                 android:id="@+id/update"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
                 android:background="@drawable/darkblueshape"
                 android:text="Actualizar información" />
 

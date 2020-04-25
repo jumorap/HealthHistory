@@ -162,6 +162,8 @@ private TextView textAccount;
                             map.put("cirugrecord", textNull);
                             map.put("ynalergic", textNull);
                             map.put("alergicrecord", textNull);
+                            map.put("ynets", textNull);
+                            map.put("etsrecord", textNull);
                             map.put("nameemergency", textNull);
                             map.put("phoneemergency", textNull);
 

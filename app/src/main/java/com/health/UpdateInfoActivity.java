@@ -55,6 +55,10 @@ private RadioButton radioYesAlergic;
 private RadioButton radioNoAlergic;
 private EditText textAlergic;
 
+private RadioButton radioYesEts;
+private RadioButton radioNoEts;
+private EditText textEts;
+
 private TextView notifCamps;
 
 private FirebaseAuth mAuthD;
@@ -89,6 +93,10 @@ private DatabaseReference mDatabase;
         radioYesAlergic = (RadioButton) findViewById(R.id.radioYesAlergic);
         radioNoAlergic = (RadioButton) findViewById(R.id.radioNoAlergic);
         textAlergic = (EditText) findViewById(R.id.textAlergic);
+
+        radioYesEts = (RadioButton) findViewById(R.id.radioYesEts);
+        radioNoEts = (RadioButton) findViewById(R.id.radioNoEts);
+        textEts = (EditText) findViewById(R.id.textEts);
 
         city = (EditText) findViewById(R.id.city);
         local = (EditText) findViewById(R.id.local);
@@ -131,6 +139,8 @@ private DatabaseReference mDatabase;
                     String textCirugAdd = dataSnapshot.child("cirugrecord").getValue().toString();
                     String alergicAddYN = dataSnapshot.child("ynalergic").getValue().toString();
                     String textAlergicAdd = dataSnapshot.child("alergicrecord").getValue().toString();
+                    String etsAddYN = dataSnapshot.child("ets").getValue().toString();
+                    String etsAdd = dataSnapshot.child("ets").getValue().toString();
                     String genderAdd = dataSnapshot.child("gender").getValue().toString();
 
                     if(genderAdd.equals("Masculino")) radioGenderMan.setChecked(true);
@@ -143,6 +153,8 @@ private DatabaseReference mDatabase;
                     else if(cirugAddYN.equals("No")) radioNoCirug.setChecked(true);
                     if(alergicAddYN.equals("Yes")) radioYesAlergic.setChecked(true);
                     else if(alergicAddYN.equals("No")) radioNoAlergic.setChecked(true);
+                    if(etsAddYN.equals("Yes")) radioYesEts.setChecked(true);
+                    else if(etsAddYN.equals("No")) radioNoEts.setChecked(true);
 
                     city.setText(cityAdd);
                     local.setText(localAdd);
@@ -187,6 +199,10 @@ private DatabaseReference mDatabase;
         if(radioYesAlergic.isChecked()) alergicYN = "Yes";
         else if(radioNoAlergic.isChecked()) alergicYN = "No";
         String alergicR = textAlergic.getText().toString().trim();
+        String etsYN = "";
+        if(radioYesEts.isChecked()) etsYN = "Yes";
+        else if(radioNoEts.isChecked()) etsYN = "No";
+        String etsR = textEts.getText().toString().trim();
 
         final String cityR = city.getText().toString().trim();
         final String localR = local.getText().toString().trim();
@@ -200,7 +216,7 @@ private DatabaseReference mDatabase;
 
 
         if(gender.isEmpty() || cardiacYN.isEmpty() || cancerYN.isEmpty() || cirugYN.isEmpty() || alergicYN.isEmpty() || cityR.isEmpty() || localR.isEmpty() ||
-        addressR.isEmpty() || birthDayR.isEmpty() || civilR.isEmpty() || bloodR.isEmpty() || nameEmergencyR.isEmpty() || phoneEmergencyR.isEmpty()){
+        addressR.isEmpty() || birthDayR.isEmpty() || civilR.isEmpty() || bloodR.isEmpty() || nameEmergencyR.isEmpty() || phoneEmergencyR.isEmpty() || etsR.isEmpty()){
             notifCamps.setText("Complete todos los campos necesarios");
             return;
         }
@@ -221,6 +237,8 @@ private DatabaseReference mDatabase;
         mapHash.put("cirugrecord", cirugR);
         mapHash.put("ynalergic", alergicYN);
         mapHash.put("alergicrecord", alergicR);
+        mapHash.put("ynets", alergicYN);
+        mapHash.put("etsrecord", alergicR);
         mapHash.put("nameemergency", nameEmergencyR);
         mapHash.put("phoneemergency", phoneEmergencyR);
 

@@ -48,7 +48,7 @@ DatabaseReference mDatabase ;
         setContentView(R.layout.activity_access);
 
         txtUser = (TextView) findViewById(R.id.welcome);
-        String user = getIntent().getStringExtra("names");
+        //String user = getIntent().getStringExtra("names");
         //txtUser.setText("¡Bienvenido " + user + "!");
 
         textDesNameA = (TextView) findViewById(R.id.textDesNameA);
@@ -65,7 +65,7 @@ DatabaseReference mDatabase ;
         textDesAlergicA = (TextView) findViewById(R.id.textDesAlergicA);
         textDesEtsA = (TextView) findViewById(R.id.textDesEtsA);
 
-        medicalDataContent();
+        //medicalDataContent();
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -107,6 +107,52 @@ DatabaseReference mDatabase ;
                     String name = dataSnapshot.child("name").getValue().toString();
 
                     txtUser.setText("Bienvenido, " + name);
+
+
+
+
+
+
+
+
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("nameAdd", dataSnapshot.child("name").getValue().toString() + " " + dataSnapshot.child("lastname").getValue().toString());
+                    map.put("documentAdd", dataSnapshot.child("cc").getValue().toString());
+                    map.put("emailAdd", dataSnapshot.child("email").getValue().toString());
+                    map.put("cityAdd", dataSnapshot.child("address").getValue().toString() + ", " + dataSnapshot.child("city").getValue().toString() + ", " + dataSnapshot.child("local").getValue().toString());
+                    //map.put("birthDayAdd", dataSnapshot.child("birthday").getValue().toString());
+                    map.put("ocupaAdd", dataSnapshot.child("ocupa").getValue().toString());
+                    //map.put("civilAdd", dataSnapshot.child("civil").getValue().toString());
+                    map.put("bloodAdd", dataSnapshot.child("blood").getValue().toString());
+                    map.put("nameEmergencyAdd", dataSnapshot.child("nameemergency").getValue().toString() + "\n+57 " +dataSnapshot.child("phoneemergency").getValue().toString());
+                    map.put("cardiacAddYN", dataSnapshot.child("yncardiac").getValue().toString() + ", " + dataSnapshot.child("cardiacrecord").getValue().toString());
+                    map.put("cancerAddYN", dataSnapshot.child("yncancer").getValue().toString() + ", " + dataSnapshot.child("cancerrecord").getValue().toString());
+                    map.put("cirugAddYN", dataSnapshot.child("yncirug").getValue().toString() + ", " + dataSnapshot.child("cirugrecord").getValue().toString());
+                    map.put("alergicAddYN", dataSnapshot.child("ynalergic").getValue().toString() + ", " + dataSnapshot.child("alergicrecord").getValue().toString());
+                    map.put("etsAddYN", dataSnapshot.child("ynets").getValue().toString() + ", " + dataSnapshot.child("etsrecord").getValue().toString());
+                    map.put("genderAdd", dataSnapshot.child("gender").getValue().toString());
+
+                    textDesNameA.setText(map.get("nameAdd").toString());
+                    textDesCcA.setText(map.get("documentAdd").toString());
+                    textDesEmailA.setText(map.get("emailAdd").toString());
+                    textDesCityA.setText(map.get("cityAdd").toString());
+                    textDesOcupaA.setText(map.get("ocupaAdd").toString());
+                    textDesBloodA.setText(map.get("bloodAdd").toString());
+                    textDesContactA.setText(map.get("nameEmergencyAdd").toString());
+                    textDescCardiacA.setText(map.get("cardiacAddYN").toString());
+                    textDesCancerA.setText(map.get("cancerAddYN").toString());
+                    textDesCirugA.setText(map.get("cirugAddYN").toString());
+                    textDesAlergicA.setText(map.get("alergicAddYN").toString());
+                    textDesEtsA.setText(map.get("etsAddYN").toString());
+                    textDesGenderA.setText(map.get("genderAdd").toString());
+
+
+
+
+
+
+
+
                 }
             }
 
@@ -125,41 +171,12 @@ DatabaseReference mDatabase ;
         }
     }*/
 
-    public void medicalDataContent(){
+    /*public void medicalDataContent(){
         String id = mAuth.getCurrentUser().getUid();
         mDatabase.child("Users").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot){
-                Map<String, Object> map = new HashMap<>();
-                map.put("nameAdd", dataSnapshot.child("name").getValue().toString() + " " + dataSnapshot.child("lastname").getValue().toString());
-                map.put("documentAdd", dataSnapshot.child("cc").getValue().toString());
-                map.put("emailAdd", dataSnapshot.child("email").getValue().toString());
-                map.put("cityAdd", dataSnapshot.child("address").getValue().toString() + ", " + dataSnapshot.child("city").getValue().toString() + ", " + dataSnapshot.child("local").getValue().toString());
-                //map.put("birthDayAdd", dataSnapshot.child("birthday").getValue().toString());
-                map.put("ocupaAdd", dataSnapshot.child("ocupa").getValue().toString());
-                //map.put("civilAdd", dataSnapshot.child("civil").getValue().toString());
-                map.put("bloodAdd", dataSnapshot.child("blood").getValue().toString());
-                map.put("nameEmergencyAdd", dataSnapshot.child("nameemergency").getValue().toString() + "\n" +dataSnapshot.child("phoneemergency").getValue().toString());
-                map.put("cardiacAddYN", dataSnapshot.child("yncardiac").getValue().toString() + ", " + dataSnapshot.child("cardiacrecord").getValue().toString());
-                map.put("cancerAddYN", dataSnapshot.child("yncancer").getValue().toString() + ", " + dataSnapshot.child("cancerrecord").getValue().toString());
-                map.put("cirugAddYN", dataSnapshot.child("yncirug").getValue().toString() + ", " + dataSnapshot.child("cirugrecord").getValue().toString());
-                map.put("alergicAddYN", dataSnapshot.child("ynalergic").getValue().toString() + ", " + dataSnapshot.child("alergicrecord").getValue().toString());
-                map.put("etsAddYN", dataSnapshot.child("ynets").getValue().toString() + ", " + dataSnapshot.child("etsrecord").getValue().toString());
-                map.put("genderAdd", dataSnapshot.child("gender").getValue().toString());
 
-                textDesNameA.setText(map.get("nameAdd").toString());
-                textDesCcA.setText(map.get("documentAdd").toString());
-                textDesEmailA.setText(map.get("emailAdd").toString());
-                textDesCityA.setText(map.get("cityAdd").toString());
-                textDesOcupaA.setText(map.get("ocupaAdd").toString());
-                textDesBloodA.setText(map.get("bloodAdd").toString());
-                textDesContactA.setText(map.get("nameEmergencyAdd").toString());
-                textDescCardiacA.setText(map.get("cardiacAddYN").toString());
-                textDesCancerA.setText(map.get("cancerAddYN").toString());
-                textDesCirugA.setText(map.get("cirugAddYN").toString());
-                textDesAlergicA.setText(map.get("alergicAddYN").toString());
-                textDesEtsA.setText(map.get("etsAddYN").toString());
-                textDesGenderA.setText(map.get("genderAdd").toString());
             }
 
             @Override
@@ -167,6 +184,6 @@ DatabaseReference mDatabase ;
 
             }
         });
-    }
+    }*/
 
 }

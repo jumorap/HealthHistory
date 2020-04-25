@@ -232,7 +232,7 @@ private DatabaseReference mDatabase;
         mapHash.put("local", localR);
         mapHash.put("address", addressR);
         mapHash.put("birthday", birthDayR);
-        mapHash.put("ocupa", birthDayR);
+        mapHash.put("ocupa", ocupaR);
         mapHash.put("civil", civilR);
         mapHash.put("blood", bloodR);
         mapHash.put("gender", gender);

@@ -59,7 +59,7 @@ DatabaseReference mDatabse ;
             }
         });
 
-
+        noRegisterMessage();
         //Enviar el id a las otras clases (MUY IMPORTANTE)
 
     }

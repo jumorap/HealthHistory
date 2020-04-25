@@ -166,6 +166,7 @@ private DatabaseReference mDatabase;
                     textCancer.setText(textCancerAdd);
                     textCirug.setText(textCirugAdd);
                     textAlergic.setText(textAlergicAdd);
+                    textEts.setText(etsAdd);
                     nameEmergency.setText(nameEmergencyAdd);
                     phoneEmergency.setText(phoneEmergencyAdd);
                 }
@@ -246,7 +247,6 @@ private DatabaseReference mDatabase;
         AccessActivity.iden ident = new AccessActivity.iden();
         String id = ident.idFireBase;
         /*mDatabase.child("Users").child(id).push().setValue(mapHash);*/
-
         mDatabase.child("Users").child(id).updateChildren(mapHash).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

@@ -22,8 +22,8 @@ public static final String user = "names";
 TextView txtUser;
 private ImageButton mSignout;
 private ImageButton updateInfo;
-private FirebaseAuth mAuth;
-private DatabaseReference mDatabse ;
+private static FirebaseAuth mAuth;
+DatabaseReference mDatabse ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +58,22 @@ private DatabaseReference mDatabse ;
             }
         });
 
+
+        //Enviar el id a las otras clases (MUY IMPORTANTE)
+
     }
 
 //Obtener el nombre de acceso (Cualquier dato de la DB)
+
+
+
+    public static class iden{
+        String idFireBase = mAuth.getCurrentUser().getUid();
+    }
+
     private void getUserInfo(){
-        String id = mAuth.getCurrentUser().getUid();
+        final String id = mAuth.getCurrentUser().getUid();
+
         mDatabse.child("Users").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

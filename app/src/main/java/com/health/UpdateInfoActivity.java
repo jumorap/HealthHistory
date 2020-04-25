@@ -1,16 +1,31 @@
 package com.health;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
-public class UpdateInfoActivity extends AppCompatActivity {
+import java.util.HashMap;
+import java.util.Map;
+
+public class UpdateInfoActivity extends AppCompatActivity implements View.OnClickListener {
 private RadioButton radioGenderMan;
 private RadioButton radioGenderWoman;
 private EditText city;
@@ -23,7 +38,25 @@ private EditText nameEmergency;
 private EditText phoneEmergency;
 private Button upload;
 
-private FirebaseAuth firebaseAuth;
+private RadioButton radioYesCardiac;
+private RadioButton radioNoCardiac;
+private EditText textCardiac;
+
+private RadioButton radioYesCancer;
+private RadioButton radioNoCancer;
+private EditText textCancer;
+
+private RadioButton radioYesCirug;
+private RadioButton radioNoCirug;
+private EditText textCirug;
+
+private RadioButton radioYesAlergic;
+private RadioButton radioNoAlergic;
+private EditText textAlergic;
+
+private TextView notifCamps;
+
+private FirebaseAuth mAuth;
 
 //Database
 DatabaseReference mDatabase;
@@ -36,6 +69,22 @@ DatabaseReference mDatabase;
         radioGenderMan = (RadioButton) findViewById(R.id.radioGenderMan);
         radioGenderWoman = (RadioButton) findViewById(R.id.radioGenderWoman);
 
+        radioYesCardiac = (RadioButton) findViewById(R.id.radioYesCardiac);
+        radioNoCardiac = (RadioButton) findViewById(R.id.radioNoCardiac);
+        textCardiac = (EditText) findViewById(R.id.textCardiac);
+
+        radioYesCancer = (RadioButton) findViewById(R.id.radioYesCancer);
+        radioNoCancer = (RadioButton) findViewById(R.id.radioNoCancer);
+        textCancer = (EditText) findViewById(R.id.textCancer);
+
+        radioYesCirug = (RadioButton) findViewById(R.id.radioYesCirug);
+        radioNoCirug = (RadioButton) findViewById(R.id.radioNoCirug);
+        textCirug = (EditText) findViewById(R.id.textCirug);
+
+        radioYesAlergic = (RadioButton) findViewById(R.id.radioYesAlergic);
+        radioNoAlergic = (RadioButton) findViewById(R.id.radioNoAlergic);
+        textAlergic = (EditText) findViewById(R.id.textAlergic);
+
         city = (EditText) findViewById(R.id.city);
         local = (EditText) findViewById(R.id.local);
         address = (EditText) findViewById(R.id.address);
@@ -44,23 +93,161 @@ DatabaseReference mDatabase;
         blood = (EditText) findViewById(R.id.blood);
         nameEmergency = (EditText) findViewById(R.id.nameEmergency);
         phoneEmergency = (EditText) findViewById(R.id.phoneEmergency);
+
         upload = (Button) findViewById(R.id.update);
+        upload.setOnClickListener(this);
+
+        notifCamps = (TextView) findViewById(R.id.notifCamps);
+        getUserInfo();
     }
-    private void uploadInfo(){
-        String gender = "genero";
+    //Obtener el nombre de acceso (Cualquier dato de la DB)
+    private void getUserInfo(){
+        AccessActivity.iden ident = new AccessActivity.iden();
+        String id = ident.idFireBase;
+        mDatabase.child("Users").child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists()){
+                    String cityAdd = dataSnapshot.child("city").getValue().toString();
+                    String localAdd = dataSnapshot.child("local").getValue().toString();
+                    String addressAdd = dataSnapshot.child("address").getValue().toString();
+                    String birthDayAdd = dataSnapshot.child("birthday").getValue().toString();
+                    String civilAdd = dataSnapshot.child("civil").getValue().toString();
+                    String bloodAdd = dataSnapshot.child("blood").getValue().toString();
+                    String nameEmergencyAdd = dataSnapshot.child("nameemergency").getValue().toString();
+                    String phoneEmergencyAdd = dataSnapshot.child("numberemergency").getValue().toString();
+                    String cardiacAddYN = dataSnapshot.child("yncardiac").getValue().toString();
+                    String textCardiacAdd = dataSnapshot.child("cardiacrecord").getValue().toString();
+                    String cancerAddYN = dataSnapshot.child("yncancer").getValue().toString();
+                    String textCancerAdd = dataSnapshot.child("cancerrecord").getValue().toString();
+                    String cirugAddYN = dataSnapshot.child("yncirug").getValue().toString();
+                    String textCirugAdd = dataSnapshot.child("cirugrecord").getValue().toString();
+                    String alergicAddYN = dataSnapshot.child("ynalergic").getValue().toString();
+                    String textAlergicAdd = dataSnapshot.child("alergicrecord").getValue().toString();
+                    String genderAdd = dataSnapshot.child("gender").getValue().toString();
+
+                    if(genderAdd.equals("Masculino")) radioGenderMan.setChecked(true);
+                    else if(genderAdd.equals("Femenino")) radioGenderWoman.setChecked(true);
+                    if(cardiacAddYN.equals("Yes")) radioYesCardiac.setChecked(true);
+                    else if(cardiacAddYN.equals("No")) radioNoCardiac.setChecked(true);
+                    if(cancerAddYN.equals("Yes")) radioYesCancer.setChecked(true);
+                    else if(cancerAddYN.equals("No")) radioNoCancer.setChecked(true);
+                    if(cirugAddYN.equals("Yes")) radioYesCirug.setChecked(true);
+                    else if(cirugAddYN.equals("No")) radioNoCirug.setChecked(true);
+                    if(alergicAddYN.equals("Yes")) radioYesAlergic.setChecked(true);
+                    else if(alergicAddYN.equals("No")) radioNoAlergic.setChecked(true);
+
+                    city.setText(cityAdd);
+                    local.setText(localAdd);
+                    address.setText(addressAdd);
+                    birthDay.setText(birthDayAdd);
+                    civil.setText(civilAdd);
+                    blood.setText(bloodAdd);
+                    textCardiac.setText(textCardiacAdd);
+                    textCancer.setText(textCancerAdd);
+                    textCirug.setText(textCirugAdd);
+                    textAlergic.setText(textAlergicAdd);
+                    nameEmergency.setText(nameEmergencyAdd);
+                    phoneEmergency.setText(phoneEmergencyAdd);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void updateInfoUser(){
+
+        String gender = "";
         if(radioGenderMan.isChecked()) gender = "Masculino";
         else if(radioGenderWoman.isChecked()) gender = "Femenino";
-        String cityR = city.getText().toString().trim();
-        String localR = local.getText().toString().trim();
-        String addressR = address.getText().toString().trim();
-        String birthDayR = birthDay.getText().toString().trim();
-        String civilR = civil.getText().toString().trim();
-        String bloodR = blood.getText().toString().trim();
-        String nameEmergencyR = nameEmergency.getText().toString().trim();
-        String phoneEmergencyR = phoneEmergency.getText().toString().trim();
-        String uploadR = upload.getText().toString().trim();
+        String cardiacYN = "";
+        if(radioYesCardiac.isChecked()) cardiacYN = "Yes";
+        else if(radioNoCardiac.isChecked()) cardiacYN = "No";
+        String cardiacR = textCardiac.getText().toString().trim();
+        String cancerYN = "";
+        if(radioYesCancer.isChecked()) cancerYN = "Yes";
+        else if(radioNoCancer.isChecked()) cancerYN = "No";
+        String cancerR = textCancer.getText().toString().trim();
+        String cirugYN = "";
+        if(radioYesCirug.isChecked()) cirugYN = "Yes";
+        else if(radioNoCirug.isChecked()) cirugYN = "No";
+        String cirugR = textCirug.getText().toString().trim();
+        String alergicYN = "";
+        if(radioYesAlergic.isChecked()) alergicYN = "Yes";
+        else if(radioNoAlergic.isChecked()) alergicYN = "No";
+        String alergicR = textAlergic.getText().toString().trim();
+
+        final String cityR = city.getText().toString().trim();
+        final String localR = local.getText().toString().trim();
+        final String addressR = address.getText().toString().trim();
+        final String birthDayR = birthDay.getText().toString().trim();
+        final String civilR = civil.getText().toString().trim();
+        final String bloodR = blood.getText().toString().trim();
+        final String nameEmergencyR = nameEmergency.getText().toString().trim();
+        final String phoneEmergencyR = phoneEmergency.getText().toString().trim();
+
+
+
+        if(gender.isEmpty() || cardiacYN.isEmpty() || cancerYN.isEmpty() || cirugYN.isEmpty() || alergicYN.isEmpty() || cityR.isEmpty() || localR.isEmpty() ||
+        addressR.isEmpty() || birthDayR.isEmpty() || civilR.isEmpty() || bloodR.isEmpty() || nameEmergencyR.isEmpty() || phoneEmergencyR.isEmpty()){
+            notifCamps.setText("Complete todos los campos necesarios");
+            return;
+        }
+
+        Map<String, Object> mapHash = new HashMap<>();
+        mapHash.put("city", cityR);
+        mapHash.put("local", localR);
+        mapHash.put("address", addressR);
+        mapHash.put("birthday", birthDayR);
+        mapHash.put("civil", civilR);
+        mapHash.put("blood", bloodR);
+        mapHash.put("gender", gender);
+        mapHash.put("yncardiac", cardiacYN);
+        mapHash.put("cardiacrecord", cardiacR);
+        mapHash.put("yncancer", cancerYN);
+        mapHash.put("cancerrecord", cancerR);
+        mapHash.put("yncirug", cirugYN);
+        mapHash.put("cirugrecord", cirugR);
+        mapHash.put("ynalergic", alergicYN);
+        mapHash.put("alergicrecord", alergicR);
+        mapHash.put("nameemergency", nameEmergencyR);
+        mapHash.put("phoneemergency", phoneEmergencyR);
+
+        //String id = mAuth.getCurrentUser().getUid();
+        AccessActivity.iden ident = new AccessActivity.iden();
+        String id = ident.idFireBase;
+        mDatabase.child("Users").child(id).updateChildren(mapHash).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                startActivity(new Intent(UpdateInfoActivity.this,AccessActivity.class));
+                Toast.makeText(UpdateInfoActivity.this, "Su información ha sido actualizada", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(UpdateInfoActivity.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
+            }
+        });
+        /*mDatabase.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> taskB) {
+                if(taskB.isSuccessful()){
+                    startActivity(new Intent(UpdateInfoActivity.this,AccessActivity.class));
+                    finish();
+                }
+            }
+        });*/
     }
 
-
+    @Override
+    public void onClick(View view){
+        //Se llama el método descrito antes
+        updateInfoUser();
+    }
 
 }

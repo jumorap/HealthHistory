@@ -6,7 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".UpdateInfoActivity">
-
+    <TextView
+        android:id="@+id/notifCamps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textAlignment="textEnd"
+        android:textColor="?android:attr/colorLongPressedHighlight"
+        android:textSize="15dp" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
-                android:text="Información escencial"
+                android:text="Información médica"
                 android:textAlignment="center"
                 android:textColor="?android:attr/colorLongPressedHighlight"
                 android:textSize="20dp" />
@@ -89,24 +96,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Género" />
-
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <RadioButton
-                    android:id="@+id/radioGenderMan"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Masculino" />
+                    <RadioButton
+                        android:id="@+id/radioGenderMan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Masculino"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
 
-                <RadioButton
-                    android:id="@+id/radioGenderWoman"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Femenino" />
+                    <RadioButton
+                        android:id="@+id/radioGenderWoman"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="Femenino"
+                        app:layout_constraintStart_toEndOf="@+id/radioGenderMan"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
             </RadioGroup>
-
             <EditText
                 android:id="@+id/civil"
                 android:layout_width="match_parent"
@@ -130,6 +143,188 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="Grupo sanguineo"
+                android:inputType="text"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
+
+
+            <TextView
+                android:id="@+id/cardiac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Tiene problemas cardiacos?" />
+
+
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                    <RadioButton
+                        android:id="@+id/radioYesCardiac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <RadioButton
+                        android:id="@+id/radioNoCardiac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"
+                        app:layout_constraintStart_toEndOf="@+id/radioYesCardiac"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+                    </RadioGroup>
+
+                <EditText
+                    android:id="@+id/textCardiac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape"
+                    android:ems="10"
+                    android:hint="¿Cuáles?"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:paddingStart="20dp"
+                    android:textSize="16dp" />
+
+
+            <TextView
+                android:id="@+id/cancer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Algún familiar ha padecido cáncer o usted padece de cáncer?" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioYesCancer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <RadioButton
+                        android:id="@+id/radioNoCancer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"
+                        app:layout_constraintStart_toEndOf="@+id/radioYesCancer"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+            </RadioGroup>
+
+                <EditText
+                    android:id="@+id/textCancer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape"
+                    android:ems="10"
+                    android:hint="¿Qué tipo de cáncer?"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:paddingStart="20dp"
+                    android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/cirug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Le han realizado alguna cirugía?" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioYesCirug"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <RadioButton
+                        android:id="@+id/radioNoCirug"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"
+                        app:layout_constraintStart_toEndOf="@+id/radioYesCirug"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+            </RadioGroup>
+                <EditText
+                    android:id="@+id/textCirug"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape"
+                    android:ems="10"
+                    android:hint="¿Cuál?"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:paddingStart="20dp"
+                    android:textSize="16dp" />
+
+
+
+            <TextView
+                android:id="@+id/Cardiac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Tiene alguna alergía?" />
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radioYesAlergic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sí"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+
+                    <RadioButton
+                        android:id="@+id/radioNoAlergic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="No"
+                        app:layout_constraintStart_toEndOf="@+id/radioYesAlergic"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="MissingConstraints" />
+            </RadioGroup>
+
+
+            <EditText
+                android:id="@+id/textAlergic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="¿Cuál?"
                 android:inputType="text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
@@ -168,7 +363,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/darkblueshape"
-                android:text="Button" />
+                android:text="Actualizar información" />
 
 
         </LinearLayout>

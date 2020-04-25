@@ -138,6 +138,7 @@ private TextView textAccount;
                             notifRegist.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
                             Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
 
+                            final String textNull = " ";
                             //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name);
@@ -146,6 +147,25 @@ private TextView textAccount;
                             map.put("phone", phone);
                             map.put("email", email);
                             map.put("password", password);
+                            map.put("city", textNull);
+                            map.put("local", textNull);
+                            map.put("address", textNull);
+                            map.put("birthday", textNull);
+                            map.put("civil", textNull);
+                            map.put("blood", textNull);
+                            map.put("gender", textNull);
+                            map.put("yncardiac", textNull);
+                            map.put("cardiacrecord", textNull);
+                            map.put("yncancer", textNull);
+                            map.put("cancerrecord", textNull);
+                            map.put("yncirug", textNull);
+                            map.put("cirugrecord", textNull);
+                            map.put("ynalergic", textNull);
+                            map.put("alergicrecord", textNull);
+                            map.put("nameemergency", textNull);
+                            map.put("phoneemergency", textNull);
+
+
                             String id = firebaseAuth.getCurrentUser().getUid();
                             mDatabase.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override

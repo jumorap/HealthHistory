@@ -137,6 +137,8 @@ private TextView textAccount;
                             txtPassword.setText("");
                             notifRegist.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
                             Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "Haga clic en el lapíz de abajo y complete su información médica", Toast.LENGTH_LONG).show();
 
                             final String textNull = "";
                             //TOMAR DATOS Y ENVIARLOS A REALTIEM DB

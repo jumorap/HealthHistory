@@ -138,7 +138,7 @@ private TextView textAccount;
                             notifRegist.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
                             Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
 
-                            final String textNull = " ";
+                            final String textNull = "";
                             //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name);

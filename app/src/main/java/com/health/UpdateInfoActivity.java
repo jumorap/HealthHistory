@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
@@ -56,15 +57,19 @@ private EditText textAlergic;
 
 private TextView notifCamps;
 
-private FirebaseAuth mAuth;
+private FirebaseAuth mAuthD;
 
 //Database
-DatabaseReference mDatabase;
+private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_info);
+
+        //Inicialización firebase Auth
+        mAuthD = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();//Nodo principal DB
 
         radioGenderMan = (RadioButton) findViewById(R.id.radioGenderMan);
         radioGenderWoman = (RadioButton) findViewById(R.id.radioGenderWoman);
@@ -97,6 +102,8 @@ DatabaseReference mDatabase;
         upload = (Button) findViewById(R.id.update);
         upload.setOnClickListener(this);
 
+
+
         notifCamps = (TextView) findViewById(R.id.notifCamps);
         getUserInfo();
     }
@@ -115,7 +122,7 @@ DatabaseReference mDatabase;
                     String civilAdd = dataSnapshot.child("civil").getValue().toString();
                     String bloodAdd = dataSnapshot.child("blood").getValue().toString();
                     String nameEmergencyAdd = dataSnapshot.child("nameemergency").getValue().toString();
-                    String phoneEmergencyAdd = dataSnapshot.child("numberemergency").getValue().toString();
+                    String phoneEmergencyAdd = dataSnapshot.child("phoneemergency").getValue().toString();
                     String cardiacAddYN = dataSnapshot.child("yncardiac").getValue().toString();
                     String textCardiacAdd = dataSnapshot.child("cardiacrecord").getValue().toString();
                     String cancerAddYN = dataSnapshot.child("yncancer").getValue().toString();
@@ -220,6 +227,8 @@ DatabaseReference mDatabase;
         //String id = mAuth.getCurrentUser().getUid();
         AccessActivity.iden ident = new AccessActivity.iden();
         String id = ident.idFireBase;
+        /*mDatabase.child("Users").child(id).push().setValue(mapHash);*/
+
         mDatabase.child("Users").child(id).updateChildren(mapHash).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
@@ -233,6 +242,9 @@ DatabaseReference mDatabase;
                 Toast.makeText(UpdateInfoActivity.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
             }
         });
+
+
+
         /*mDatabase.child("Users").child(id).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> taskB) {

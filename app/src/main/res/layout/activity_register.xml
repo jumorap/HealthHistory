@@ -47,36 +47,21 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/textLastName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/shape"
-        android:ems="10"
-        android:hint="Apellidos"
-        android:inputType="textPersonName|text"
-        android:padding="6dp"
-        android:paddingStart="20dp"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/textCC"
-        app:layout_constraintEnd_toEndOf="@+id/textCC" />
-
-    <EditText
         android:id="@+id/textCcA"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/shape"
         android:ems="10"
-        android:hint="Nombres"
+        android:hint="Nombre completo"
         android:inputType="textPersonName|text"
         android:padding="6dp"
         android:paddingStart="20dp"
         android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/textCC"
-        app:layout_constraintEnd_toStartOf="@+id/textLastName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -163,27 +148,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPassword" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nombres:"
-            app:layout_constraintBottom_toTopOf="@+id/textCcA"
-            app:layout_constraintStart_toStartOf="@+id/textCcA"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="1.0" />
-
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Apellidos:"
-        app:layout_constraintBottom_toTopOf="@+id/textLastName"
-        app:layout_constraintStart_toStartOf="@+id/textLastName"
+        android:text="Nombre completo:"
+        app:layout_constraintBottom_toTopOf="@+id/textCcA"
+        app:layout_constraintStart_toStartOf="@+id/textCcA"
         app:layout_constraintTop_toBottomOf="@+id/textView13"
         app:layout_constraintVertical_bias="1.0" />
 
-        <TextView
+    <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

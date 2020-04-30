@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -26,6 +27,7 @@ public static final String user = "names";
 TextView txtUser;
 private ImageButton mSignout;
 private ImageButton updateInfo;
+private ImageButton calendarInfo;
     private TextView textDesNameA;
     private TextView textDesCcA;
     private TextView textDesEmailA;
@@ -71,6 +73,7 @@ DatabaseReference mDatabase ;
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mSignout = (ImageButton) findViewById(R.id.btnSignout);
         updateInfo = (ImageButton) findViewById(R.id.updateInfo);
+        calendarInfo = (ImageButton) findViewById(R.id.calendarInfo);
 
         //Se invoca al método que escribe el correo en el ingreso
         getUserInfo();
@@ -87,6 +90,12 @@ DatabaseReference mDatabase ;
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AccessActivity.this, UpdateInfoActivity.class));
+            }
+        });
+        calendarInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccessActivity.this, CalendarMainActivity.class));
             }
         });
         //noRegisterMessage();
@@ -116,7 +125,7 @@ DatabaseReference mDatabase ;
 
 
                     Map<String, Object> map = new HashMap<>();
-                    map.put("nameAdd", dataSnapshot.child("name").getValue().toString() + " " + dataSnapshot.child("lastname").getValue().toString());
+                    map.put("nameAdd", dataSnapshot.child("name").getValue().toString());
                     map.put("documentAdd", dataSnapshot.child("cc").getValue().toString());
                     map.put("emailAdd", dataSnapshot.child("email").getValue().toString());
                     map.put("cityAdd", dataSnapshot.child("address").getValue().toString() + ", " + dataSnapshot.child("city").getValue().toString() + ", " + dataSnapshot.child("local").getValue().toString());

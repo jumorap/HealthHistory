@@ -26,7 +26,6 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 private EditText txtName;
-private EditText txtLastName;
 private EditText txtCC;
 private EditText txtPhone;
 private EditText txtEmail;
@@ -48,7 +47,6 @@ private TextView textAccount;
 
         //Rferenciar views
         txtName = (EditText) findViewById(R.id.textCcA);
-        txtLastName = (EditText) findViewById(R.id.textLastName);
         txtCC = (EditText) findViewById(R.id.textCC);
         txtPhone = (EditText) findViewById(R.id.textPhone);
         txtEmail = (EditText) findViewById(R.id.textEmail);
@@ -74,7 +72,6 @@ private TextView textAccount;
     private void registrarUsuario(){
         //Se convierte a texto el ingreso del correo y la contraseña
         final String name = txtName.getText().toString().trim();
-        final String lastName = txtLastName.getText().toString().trim();
         final String CC = txtCC.getText().toString().trim();
         final String phone = txtPhone.getText().toString().trim();
         final String email = txtEmail.getText().toString().trim();
@@ -84,11 +81,6 @@ private TextView textAccount;
         if(TextUtils.isEmpty(name)){
             Toast.makeText(this,"Debe ingresar su nombre",Toast.LENGTH_LONG).show();
             notifRegist.setText("Debe ingresar su nombre");
-            return;
-        }
-        if(TextUtils.isEmpty(lastName)){
-            Toast.makeText(this,"Debe ingresar sus apellidos",Toast.LENGTH_LONG).show();
-            notifRegist.setText("Debe ingresar sus apellidos");
             return;
         }
         if(TextUtils.isEmpty(CC)){
@@ -130,13 +122,11 @@ private TextView textAccount;
                             FirebaseUser usuario = firebaseAuth.getCurrentUser();
                             usuario.sendEmailVerification();
                             txtName.setText("");
-                            txtLastName.setText("");
                             txtCC.setText("");
                             txtPhone.setText("");
                             txtEmail.setText("");
                             txtPassword.setText("");
                             notifRegist.setText("Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales");
-                            Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
                             Toast.makeText(RegisterActivity.this, "Se ha registrado con éxtio, VERIFIQUE SU CORREO e ingrese nuevamente sus credenciales", Toast.LENGTH_LONG).show();
                             Toast.makeText(RegisterActivity.this, "Haga clic en el lapíz de arriba y complete su información médica", Toast.LENGTH_LONG).show();
 
@@ -144,7 +134,6 @@ private TextView textAccount;
                             //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name);
-                            map.put("lastname", lastName);
                             map.put("cc", CC);
                             map.put("phone", phone);
                             map.put("email", email);

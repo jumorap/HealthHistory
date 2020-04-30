@@ -13,19 +13,31 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/updateInfo"
+            android:id="@+id/btnSignout"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+
+        <ImageButton
+            android:id="@+id/updateInfo"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/btnSignout"
             app:srcCompat="@android:drawable/ic_menu_edit" />
 
         <ImageButton
-            android:id="@+id/btnSignout"
+            android:id="@+id/calendarInfo"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="8dp"
@@ -34,7 +46,7 @@
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+            app:srcCompat="@android:drawable/ic_menu_today" />
 
         <TextView
             android:id="@+id/welcome"

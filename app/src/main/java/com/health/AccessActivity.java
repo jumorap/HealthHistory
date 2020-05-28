@@ -28,6 +28,7 @@ TextView txtUser;
 private ImageButton mSignout;
 private ImageButton updateInfo;
 private ImageButton calendarInfo;
+private ImageButton history;
     private TextView textDesNameA;
     private TextView textDesCcA;
     private TextView textDesEmailA;
@@ -74,6 +75,7 @@ DatabaseReference mDatabase ;
         mSignout = (ImageButton) findViewById(R.id.btnSignout);
         updateInfo = (ImageButton) findViewById(R.id.updateInfo);
         calendarInfo = (ImageButton) findViewById(R.id.calendarInfo);
+        history = (ImageButton) findViewById(R.id.history);
 
         //Se invoca al método que escribe el correo en el ingreso
         getUserInfo();
@@ -98,6 +100,12 @@ DatabaseReference mDatabase ;
                 startActivity(new Intent(AccessActivity.this, CalendarMainActivity.class));
             }
         });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccessActivity.this, MainHisory.class));
+            }
+        });
         //noRegisterMessage();
     }
 
@@ -106,7 +114,7 @@ DatabaseReference mDatabase ;
     //Enviar el id a las otras clases (MUY IMPORTANTE)
         String idFireBase = mAuth.getCurrentUser().getUid();
     }
-
+    public static String seLlama;
     private void getUserInfo(){
         final String id = mAuth.getCurrentUser().getUid();
         mDatabase.child("Users").child(id).addValueEventListener(new ValueEventListener() {
@@ -116,8 +124,7 @@ DatabaseReference mDatabase ;
                     String name = dataSnapshot.child("name").getValue().toString();
 
                     txtUser.setText("Bienvenido, " + name);
-
-
+                    seLlama = name;
 
 
 
@@ -170,6 +177,9 @@ DatabaseReference mDatabase ;
 
             }
         });
+    }
+    public static class elNombre{
+        String nombreDe = seLlama;
     }
 
     /*public void noRegisterMessage(){

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".HystoryAcces"></activity>
+        <activity android:name=".MainHisory"></activity>
+        <activity android:name=".HystoryAcces" />
         <activity android:name=".UpdateInfoActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".ResetPasswordActivity" />

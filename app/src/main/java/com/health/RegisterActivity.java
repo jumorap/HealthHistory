@@ -131,7 +131,7 @@ private TextView textAccount;
                             Toast.makeText(RegisterActivity.this, "Haga clic en el lapíz de arriba y complete su información médica", Toast.LENGTH_LONG).show();
 
                             final String textNull = "";
-                            //TOMAR DATOS Y ENVIARLOS A REALTIEM DB
+                            //TOMAR DATOS Y ENVIARLOS A REALTIME DB
                             Map<String, Object> map = new HashMap<>();
                             map.put("name", name);
                             map.put("cc", CC);

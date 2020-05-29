@@ -37,7 +37,7 @@ public class AdapterHistory extends RecyclerView.Adapter<HolderHistory> {
 
     @Override
     public void onBindViewHolder(@NonNull HolderHistory holder, int position) {
-        String newName = listMensaje.get(2).getNombre();
+        //String newName = listMensaje.get(2).getNombre();
 
         holder.getHora().setText(listMensaje.get(position).getHora());
         holder.getMensaje().setText(listMensaje.get(position).getMensaje());

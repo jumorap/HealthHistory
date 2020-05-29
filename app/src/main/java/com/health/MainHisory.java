@@ -59,7 +59,10 @@ public class MainHisory extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance();
         DBReference = database.getReference("Chats");
-        databaseReference = DBReference.child("Proof");//Sala chat
+        //databaseReference = DBReference.child("Proof");//Sala chat
+        AccessActivity.iden ident = new AccessActivity.iden();
+        final String id = ident.idFireBase;
+        databaseReference = DBReference.child(id);//Sala chat
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         storage = FirebaseStorage.getInstance();
@@ -71,8 +74,6 @@ public class MainHisory extends AppCompatActivity {
 
         final DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
         final Date date = new Date();
-        AccessActivity.iden ident = new AccessActivity.iden();
-        final String id = ident.idFireBase;
         AccessActivity.elNombre elNombre = new AccessActivity.elNombre();
         final String nombreDe = elNombre.nombreDe;
         boton.setOnClickListener(new View.OnClickListener() {

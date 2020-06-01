@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -30,7 +30,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class MainHisory extends AppCompatActivity {
+public class UploadHistory extends AppCompatActivity {
     private RecyclerView vistaChat;
     private EditText escribir;
     private ImageButton boton;
@@ -47,16 +47,10 @@ public class MainHisory extends AppCompatActivity {
     private LocalDateTime localDateTime;
     private DatabaseReference mDatabase;
     private static final int PHOTO_SEND = 1;
-
-    private TextView documentS;
-    private TextView addressS;
-    private TextView phoneS;
-    private TextView bornS;
-    private TextView patientS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_hisory);
+        setContentView(R.layout.activity_upload_history);
 
         vistaChat = findViewById(R.id.vistaChat);
         escribir = findViewById(R.id.escribir);
@@ -73,27 +67,14 @@ public class MainHisory extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
         storage = FirebaseStorage.getInstance();
-
+/*
         adapter = new AdapterHistory(this);
         LinearLayoutManager l = new LinearLayoutManager(this);
         vistaChat.setLayoutManager(l);
         vistaChat.setAdapter(adapter);
+*/
 
-        patientS = (TextView) findViewById(R.id.patientS);
-        bornS = (TextView) findViewById(R.id.bornS);
-        phoneS = (TextView) findViewById(R.id.phoneS);
-        addressS = (TextView) findViewById(R.id.addressS);
-        documentS = (TextView) findViewById(R.id.documentS);
-
-        AccessActivity.identidadUsuario identidadUsuario = new AccessActivity.identidadUsuario();
-        patientS.setText(identidadUsuario.patientSent);
-        bornS.setText(identidadUsuario.bornSent);
-        phoneS.setText(identidadUsuario.phoneSent);
-        addressS.setText(identidadUsuario.addressSent);
-        documentS.setText(identidadUsuario.documentSent);
-
-
-        /*final DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+        final DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
         final Date date = new Date();
         AccessActivity.elNombre elNombre = new AccessActivity.elNombre();
         final String nombreDe = elNombre.nombreDe;
@@ -103,6 +84,8 @@ public class MainHisory extends AppCompatActivity {
                 //mDatabase.child("Users").child(id).child("name").get
                 databaseReference.push().setValue(new History(dateFormat.format(date),nombreDe,escribir.getText().toString(),"","1"));
                 escribir.setText("");
+                onBackPressed();
+                Toast.makeText(UploadHistory.this,"Se ha subido el reporte clínico correctamente",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -117,7 +100,7 @@ public class MainHisory extends AppCompatActivity {
         });
 
 
-        btnDown.setOnClickListener(new View.OnClickListener() {
+        /*btnDown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 vistaChat.scrollToPosition(adapter.getItemCount()-1);
@@ -125,7 +108,7 @@ public class MainHisory extends AppCompatActivity {
         });*/
 
 
-        scrollAdapter();
+        //scrollAdapter();
 
 
 
@@ -134,7 +117,7 @@ public class MainHisory extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 History m = dataSnapshot.getValue(History.class);
-                adapter.addMessage(m);
+                //adapter.addMessage(m);
             }
 
             @Override
@@ -159,10 +142,10 @@ public class MainHisory extends AppCompatActivity {
         });
 
         //*/
-        scrollSend();
+        //scrollSend();
     }
 
-/*
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -172,7 +155,7 @@ public class MainHisory extends AppCompatActivity {
 
             //imágenes chat
             final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
-            final DateFormat dateFormat = new SimpleDateFormat("hh:mm a");
+            final DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
             final Date date = new Date();
             AccessActivity.iden ident = new AccessActivity.iden();
             final String id = ident.idFireBase;
@@ -191,19 +174,19 @@ public class MainHisory extends AppCompatActivity {
                             String u = uri.toString();
                             History m = new History(dateFormat.format(date),nombreDe,"_________________________________",u,"2");
                             databaseReference.push().setValue(m);
-                            scrollSend();
+                            //scrollSend();
                         }
 
                     });
                 }
             });
-            scrollSend();
+            //scrollSend();
         }
-        scrollSend();
-    }*/
+        //scrollSend();
+    }
 
 
-    private void scrollAdapter(){
+    /*private void scrollAdapter(){
         adapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
@@ -211,9 +194,9 @@ public class MainHisory extends AppCompatActivity {
                 scrollSend();
             }
         });
-    }
+    }*/
 
-    private void scrollSend(){
+    /*private void scrollSend(){
         vistaChat.scrollToPosition(adapter.getItemCount()-1);
-    }
+    }*/
 }

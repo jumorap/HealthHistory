@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#609FC8"
+    tools:context=".MainHisory">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Cédula Ciudadana" />
+
+            <EditText
+                android:id="@+id/ccH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Cédula Ciudadana"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Peso (Kg)" />
+
+            <EditText
+                android:id="@+id/pesoH"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Peso (Kg)"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Talla (cm)" />
+
+            <EditText
+                android:id="@+id/ccH7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Talla - altura (cm)"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Temperatura (°C)" />
+
+            <EditText
+                android:id="@+id/ccH6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Temperatura (°C)"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Tensión" />
+
+            <EditText
+                android:id="@+id/ccH5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Tensión Ej. 120/80"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Saturación" />
+
+            <EditText
+                android:id="@+id/ccH4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Saturación"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingTop="24dp"
+                android:text="Síntomas" />
+
+            <EditText
+                android:id="@+id/ccH3"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Síntomas"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Observaciones médico" />
+
+            <EditText
+                android:id="@+id/ccH2"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Observaciones médico"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:text="Prescripción" />
+
+            <EditText
+                android:id="@+id/ccH9"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginStart="8dp"
+
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shapewhite"
+                android:hint="Prescripción"
+                android:maxHeight="120dp"
+                android:paddingStart="14dp"
+                android:paddingTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="8dp"
+                android:text=""
+                android:textColor="@color/black_1"
+                android:textColorHint="@color/grey_500"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/boton"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnFoto"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/image_icon"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/boton"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/arrow"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/escribir" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

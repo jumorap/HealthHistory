@@ -24,11 +24,14 @@ import java.util.Map;
 
 public class AccessActivity extends AppCompatActivity {
 public static final String user = "names";
+public static String patientH, bornH, phoneH, addressH, documentH;
 TextView txtUser;
 private ImageButton mSignout;
 private ImageButton updateInfo;
 private ImageButton calendarInfo;
 private ImageButton history;
+private ImageButton uploadHistory;
+
     private TextView textDesNameA;
     private TextView textDesCcA;
     private TextView textDesEmailA;
@@ -72,10 +75,12 @@ DatabaseReference mDatabase ;
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
         mSignout = (ImageButton) findViewById(R.id.btnSignout);
         updateInfo = (ImageButton) findViewById(R.id.updateInfo);
         calendarInfo = (ImageButton) findViewById(R.id.calendarInfo);
         history = (ImageButton) findViewById(R.id.history);
+        uploadHistory = (ImageButton) findViewById(R.id.uploadHistory);
 
         //Se invoca al método que escribe el correo en el ingreso
         getUserInfo();
@@ -104,6 +109,12 @@ DatabaseReference mDatabase ;
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AccessActivity.this, MainHisory.class));
+            }
+        });
+        uploadHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccessActivity.this, UploadHistory.class));
             }
         });
         //noRegisterMessage();
@@ -136,7 +147,7 @@ DatabaseReference mDatabase ;
                     map.put("documentAdd", dataSnapshot.child("cc").getValue().toString());
                     map.put("emailAdd", dataSnapshot.child("email").getValue().toString());
                     map.put("cityAdd", dataSnapshot.child("address").getValue().toString() + ", " + dataSnapshot.child("city").getValue().toString() + ", " + dataSnapshot.child("local").getValue().toString());
-                    //map.put("birthDayAdd", dataSnapshot.child("birthday").getValue().toString());
+                    map.put("birthDayAdd", dataSnapshot.child("birthday").getValue().toString());
                     map.put("ocupaAdd", dataSnapshot.child("ocupa").getValue().toString());
                     //map.put("civilAdd", dataSnapshot.child("civil").getValue().toString());
                     map.put("bloodAdd", dataSnapshot.child("blood").getValue().toString());
@@ -162,9 +173,12 @@ DatabaseReference mDatabase ;
                     textDesEtsA.setText(map.get("etsAddYN").toString());
                     textDesGenderA.setText(map.get("genderAdd").toString());
 
-
-
-
+                    //Compartir información con otras clases
+                    patientH = (String) map.get("nameAdd");
+                    bornH = (String) map.get("birthDayAdd");
+                    phoneH = dataSnapshot.child("phoneemergency").getValue().toString();
+                    addressH = (String) map.get("cityAdd");
+                    documentH = (String) map.get("documentAdd");
 
 
 
@@ -180,6 +194,14 @@ DatabaseReference mDatabase ;
     }
     public static class elNombre{
         String nombreDe = seLlama;
+    }
+
+    public static class identidadUsuario{
+        String patientSent = patientH;
+        String bornSent = bornH;
+        String phoneSent = phoneH;
+        String addressSent = addressH;
+        String documentSent = documentH;
     }
 
     /*public void noRegisterMessage(){

@@ -26,10 +26,10 @@
                 android:text="Cédula Ciudadana" />
 
             <EditText
-                android:id="@+id/ccH"
+                android:id="@+id/escribir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -58,7 +58,7 @@
                 android:id="@+id/pesoH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -84,10 +84,10 @@
                 android:text="Talla (cm)" />
 
             <EditText
-                android:id="@+id/ccH7"
+                android:id="@+id/tallaH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -113,10 +113,10 @@
                 android:text="Temperatura (°C)" />
 
             <EditText
-                android:id="@+id/ccH6"
+                android:id="@+id/tempH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -142,10 +142,10 @@
                 android:text="Tensión" />
 
             <EditText
-                android:id="@+id/ccH5"
+                android:id="@+id/tensiH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -171,10 +171,10 @@
                 android:text="Saturación" />
 
             <EditText
-                android:id="@+id/ccH4"
+                android:id="@+id/satH"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -201,10 +201,10 @@
                 android:text="Síntomas" />
 
             <EditText
-                android:id="@+id/ccH3"
+                android:id="@+id/sintH"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -230,10 +230,10 @@
                 android:text="Observaciones médico" />
 
             <EditText
-                android:id="@+id/ccH2"
+                android:id="@+id/obsH"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -259,10 +259,10 @@
                 android:text="Prescripción" />
 
             <EditText
-                android:id="@+id/ccH9"
+                android:id="@+id/presH"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="0dp"
 
                 android:layout_marginBottom="8dp"
                 android:background="@drawable/shapewhite"
@@ -283,7 +283,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:textAlignment="textEnd">
 
                 <ImageButton
                     android:id="@+id/btnFoto"
@@ -301,6 +302,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/arrow"
+                    android:textAlignment="textEnd"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/escribir" />

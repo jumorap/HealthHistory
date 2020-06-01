@@ -114,7 +114,7 @@ public class MainHisory extends AppCompatActivity {
                 i.putExtra(Intent.EXTRA_LOCAL_ONLY,true);
                 startActivityForResult(Intent.createChooser(i,"Seleccionar foto"),PHOTO_SEND);
             }
-        });
+        });*/
 
 
         btnDown.setOnClickListener(new View.OnClickListener() {
@@ -122,7 +122,7 @@ public class MainHisory extends AppCompatActivity {
             public void onClick(View view) {
                 vistaChat.scrollToPosition(adapter.getItemCount()-1);
             }
-        });*/
+        });
 
 
         scrollAdapter();

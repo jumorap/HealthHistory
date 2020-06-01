@@ -74,7 +74,7 @@ public class UploadHistory extends AppCompatActivity {
         vistaChat.setAdapter(adapter);
 */
 
-        final DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         final Date date = new Date();
         AccessActivity.elNombre elNombre = new AccessActivity.elNombre();
         final String nombreDe = elNombre.nombreDe;
@@ -155,7 +155,7 @@ public class UploadHistory extends AppCompatActivity {
 
             //imágenes chat
             final StorageReference fotoReferencia = storageReference.child(u.getLastPathSegment());
-            final DateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, ''yy");
+            final DateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
             final Date date = new Date();
             AccessActivity.iden ident = new AccessActivity.iden();
             final String id = ident.idFireBase;
@@ -174,9 +174,9 @@ public class UploadHistory extends AppCompatActivity {
                             String u = uri.toString();
                             History m = new History(dateFormat.format(date),nombreDe,"_________________________________",u,"2");
                             databaseReference.push().setValue(m);
+                            Toast.makeText(UploadHistory.this,"La fotografía se ha subido al reporte clínico correctamente",Toast.LENGTH_LONG).show();
                             //scrollSend();
                         }
-
                     });
                 }
             });

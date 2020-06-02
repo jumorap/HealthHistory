@@ -10,74 +10,93 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@color/NORMAL"
+        android:orientation="vertical">
 
-        <ImageButton
-            android:id="@+id/btnSignout"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/NORMAL"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/updateInfo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnSignout"
-            app:srcCompat="@android:drawable/ic_menu_edit" />
+            <ImageButton
+                android:id="@+id/btnSignout"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/NORMAL"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
-        <ImageButton
-            android:id="@+id/calendarInfo"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_today" />
+            <ImageButton
+                android:id="@+id/updateInfo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/NORMAL"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btnSignout"
+                app:srcCompat="@android:drawable/ic_menu_edit" />
 
-        <ImageButton
-            android:id="@+id/history"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_compass" />
+            <ImageButton
+                android:id="@+id/calendarInfo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/NORMAL"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_today" />
 
-        <ImageButton
-            android:id="@+id/uploadHistory"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_upload" />
+            <ImageButton
+                android:id="@+id/history"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/NORMAL"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_compass" />
+
+            <ImageButton
+                android:id="@+id/uploadHistory"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:background="@color/NORMAL"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@android:drawable/ic_menu_upload" />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/welcome"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="14dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="8dp"
             android:text="Inicio de sesión exitoso"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -86,7 +105,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#E1E1E1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -99,16 +119,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textNameA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Nombre"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -116,7 +137,9 @@
                     android:id="@+id/textDesNameA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -125,16 +148,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textCcA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Cédula Ciudadana"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -142,7 +166,9 @@
                     android:id="@+id/textDesCcA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -151,16 +177,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textEmailA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Correo Electrónico"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -168,7 +195,9 @@
                     android:id="@+id/textDesEmailA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -178,16 +207,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textOcupaA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Residencia"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -195,7 +225,9 @@
                     android:id="@+id/textDesCityA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -204,16 +236,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textCityA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Ocupación"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -221,7 +254,9 @@
                     android:id="@+id/textDesOcupaA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -230,16 +265,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textBloodA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Grupo Sanguineo"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -247,7 +283,9 @@
                     android:id="@+id/textDesBloodA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -256,16 +294,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textContactA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Género"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -273,7 +312,9 @@
                     android:id="@+id/textDesGenderA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -282,16 +323,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textGenderA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Problemas Cardiacos"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -299,7 +341,9 @@
                     android:id="@+id/textDescCardiacA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -308,16 +352,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textCardiacA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Historial de cáncer"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -325,7 +370,9 @@
                     android:id="@+id/textDesCancerA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -334,16 +381,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textCancerA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Cirugías"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -351,7 +399,9 @@
                     android:id="@+id/textDesCirugA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -360,16 +410,17 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textCirugA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Alergias"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -377,7 +428,9 @@
                     android:id="@+id/textDesAlergicA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -386,16 +439,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textAlergicA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="ETS"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -403,7 +457,9 @@
                     android:id="@+id/textDesEtsA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
 
@@ -413,16 +469,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:paddingStart="24dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:paddingEnd="24dp"
-                android:paddingBottom="10dp">
+                android:paddingBottom="8dp">
 
                 <TextView
                     android:id="@+id/textEtsA"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
-                    android:paddingEnd="8dp"
+                    android:paddingEnd="0dp"
                     android:text="Contacto de Emergencia"
+                    android:textColor="#4A4A4A"
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
@@ -430,7 +487,9 @@
                     android:id="@+id/textDesContactA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Loading..." />
+                    android:paddingStart="8dp"
+                    android:text="Loading..."
+                    android:textColor="#000000" />
 
             </LinearLayout>
         </LinearLayout>

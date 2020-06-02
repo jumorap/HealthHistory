@@ -19,11 +19,23 @@
             android:padding="24dp">
 
             <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:text="Formulario de la consulta"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
                 android:id="@+id/textView22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Cédula Ciudadana" />
+                android:text="Cédula Ciudadana"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/escribir"
@@ -52,7 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Peso (Kg)" />
+                android:text="Peso (Kg)"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/pesoH"
@@ -81,7 +94,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Talla (cm)" />
+                android:text="Talla (cm)"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/tallaH"
@@ -110,7 +124,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Temperatura (°C)" />
+                android:text="Temperatura (°C)"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/tempH"
@@ -139,7 +154,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Tensión" />
+                android:text="Tensión"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/tensiH"
@@ -168,7 +184,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Saturación" />
+                android:text="Saturación"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/satH"
@@ -198,7 +215,8 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
                 android:paddingTop="24dp"
-                android:text="Síntomas" />
+                android:text="Síntomas"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/sintH"
@@ -227,7 +245,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Observaciones médico" />
+                android:text="Observaciones del médico"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/obsH"
@@ -256,7 +275,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8dp"
-                android:text="Prescripción" />
+                android:text="Prescripción"
+                android:textColor="#FFFFFF" />
 
             <EditText
                 android:id="@+id/presH"
@@ -284,29 +304,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
+                android:paddingTop="8dp"
+                android:paddingBottom="24dp"
                 android:textAlignment="textEnd">
+
+                <TextView
+                    android:id="@+id/textView23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingEnd="8dp"
+                    android:text="Subir una foto: "
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/btnFoto"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:background="@drawable/image_icon"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/boton"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/arrow"
-                    android:textAlignment="textEnd"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/escribir" />
             </LinearLayout>
+
+            <Button
+                android:id="@+id/boton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/darkblueshape"
+                android:text="Subir formulario"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/escribir" />
 
         </LinearLayout>
     </ScrollView>

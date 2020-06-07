@@ -20,6 +20,11 @@
         <activity android:name=".AccessActivity" />
         <activity android:name=".CalendarMainActivity" />
         <activity android:name=".DoctorsMainActivity" />
+        <activity android:name=".AddInvent"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".AddInventory"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".DeleteInventory" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

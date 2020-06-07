@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#609FC8"
+    android:background="@color/NORMAL"
     tools:context=".MainActivity">
 
     <Button
@@ -123,13 +123,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:clickable="true"
         android:text="@string/btnResgist"
         android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:clickable="true"
         app:layout_constraintTop_toBottomOf="@+id/resetPassworda" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

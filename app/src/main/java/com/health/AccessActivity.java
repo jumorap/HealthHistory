@@ -5,14 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +28,7 @@ private ImageButton updateInfo;
 private ImageButton calendarInfo;
 private ImageButton history;
 private ImageButton uploadHistory;
+private ImageButton addInventa;
 
     private TextView textDesNameA;
     private TextView textDesCcA;
@@ -81,6 +79,7 @@ DatabaseReference mDatabase ;
         calendarInfo = (ImageButton) findViewById(R.id.calendarInfo);
         history = (ImageButton) findViewById(R.id.history);
         uploadHistory = (ImageButton) findViewById(R.id.uploadHistory);
+        addInventa = (ImageButton) findViewById(R.id.addInventa);
 
         //Se invoca al método que escribe el correo en el ingreso
         getUserInfo();
@@ -115,6 +114,12 @@ DatabaseReference mDatabase ;
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AccessActivity.this, UploadHistory.class));
+            }
+        });
+        addInventa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccessActivity.this, AddInvent.class));
             }
         });
         //noRegisterMessage();

@@ -24,7 +24,8 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".AddInventory"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".DeleteInventory" />
+        <activity android:name=".DeleteInventory"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

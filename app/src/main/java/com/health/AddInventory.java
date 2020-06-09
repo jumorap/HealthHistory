@@ -1,5 +1,6 @@
 package com.health;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,42 +10,62 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 
 public class AddInventory extends AppCompatActivity {
 
-    private FirebaseAuth mAuthD;
+    public static FirebaseAuth mAuthD;
     //Database
-    private DatabaseReference mDatabase;
+    public static DatabaseReference mDatabase;
 
-    public ArrayList<String> data = new ArrayList<String>();
-    public ArrayList<String> data1 = new ArrayList<String>();
-    public ArrayList<String> data2 = new ArrayList<String>();
-    public EditText ed1, ed2, ed3;
-    public Button b1;
-    public ArrayList<String> productArray = new ArrayList<>();
-
+    public static final ArrayList<String> data = new ArrayList<String>();
+    public static final ArrayList<String> data1 = new ArrayList<String>();
+    public static final ArrayList<String> data2 = new ArrayList<String>();
+    public static EditText ed1, ed2, ed3, ed4, ed5;
+    public static Button btn1;
+    public static ArrayList<String> productArray = new ArrayList<>();
+    public static TableLayout table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inventory);
 
+        mAuthD = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();//Nodo principal DB
+
         ed1 = findViewById(R.id.ed1);
         ed2 = findViewById(R.id.ed2);
         ed3 = findViewById(R.id.ed3);
-        b1 = findViewById(R.id.btn1);
+        ed4 = findViewById(R.id.ed4);
+        ed5 = findViewById(R.id.ed5);
+        btn1 = findViewById(R.id.btn1);
+        //table = (TableLayout) findViewById(R.id.tb1);
+
+        //Añade los datos en la tabla al iniciar el programa
+        //setInTable();
 
 
-        b1.setOnClickListener(new View.OnClickListener() {
+        btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 add();
@@ -52,51 +73,59 @@ public class AddInventory extends AppCompatActivity {
         });
     }
 
-    public ArrayList<String> add(){
-        Map<String, Object> mapHash = new HashMap<>();
+    public void add(){
+        Map<String, Object> mapHashAdd = new HashMap<>();
         String prodname = ed1.getText().toString().trim();
         String price = ed2.getText().toString().trim();
         String qty = ed3.getText().toString().trim();
-        if(!prodname.equals("") || !price.equals("") || !qty.equals("")) {
-            mapHash.put("prudct", prodname);
-            mapHash.put("price", price);
-            mapHash.put("count", qty);
-            data.add(prodname);
+        String concent = ed4.getText().toString().trim();
+        String total = ed5.getText().toString().trim();
+        if(!prodname.equals("") || !price.equals("") || !qty.equals("") || !concent.equals("") || !total.equals("")) {
+            mapHashAdd.put("product", prodname);
+            mapHashAdd.put("price", price);
+            mapHashAdd.put("count", qty);
+            mapHashAdd.put("concentra", concent);
+            mapHashAdd.put("total", total);
+            DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmssZ");
+            Date date = new Date();
+            String idProduct = dateFormat.format(date);
+            mDatabase.child("Products")
+                    .child(idProduct)
+                    .updateChildren(mapHashAdd)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(AddInventory.this, "Se ha actualizado correctamente", Toast.LENGTH_LONG).show();
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(AddInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
+                }
+            });
+            /*data.add(prodname);
             //Este es el arreglo que guarda los productos, pero se reinicia cada vez que termina >:|
             productArray.add(prodname);
             data1.add(price);
-            data2.add(qty);
-            TableLayout table = (TableLayout) findViewById(R.id.tb1);
-            TableRow row = new TableRow(this);
-            TextView t1 = new TextView(this);
-            TextView t2 = new TextView(this);
-            TextView t3 = new TextView(this);
+            data2.add(qty);*/
 
-            for (int i = 0; i < data.size(); i++) {
-                String pname = data.get(i);
-                String prc = data1.get(i);
-                String qtyy = data2.get(i);
-                t1.setText(pname);
-                t2.setText(prc);
-                t3.setText(qtyy);
-            }
+            //setInTable();
 
-            row.addView(t1);
-            row.addView(t2);
-            row.addView(t3);
-
-            table.addView(row);
             ed1.setText("");
             ed2.setText("");
             ed3.setText("");
-            ed1.requestFocus();
+            ed4.setText("");
+            ed5.setText("");
+            //ed1.requestFocus();
+
         } else Toast.makeText(AddInventory.this, "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
-        return productArray;
     }
+
+
+
+
 //Metodo que se usa para llamar el arreglo de productos llenos :)
     public ArrayList<String> getArray() {
-        productArray.add("P1");
-        productArray.add("P2");
-        return productArray;
+        return AddInvent.onlyProducts;
     }
 }

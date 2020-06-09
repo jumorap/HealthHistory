@@ -51,10 +51,11 @@
             android:paddingStart="14dp">
 
             <TextView
-                android:layout_width="150dp"
+                android:id="@+id/NG"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:paddingStart="14dp"
-                android:text="Nombre producto:"
+                android:text="Nombre genérico:"
                 android:textColor="#3E3E3E" />
 
             <EditText
@@ -76,7 +77,8 @@
             android:paddingStart="14dp">
 
             <TextView
-                android:layout_width="150dp"
+                android:id="@+id/P"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:paddingStart="14dp"
                 android:text="Precio (COP):"
@@ -101,10 +103,11 @@
             android:paddingStart="14dp">
 
             <TextView
-                android:layout_width="150dp"
+                android:id="@+id/U"
+                android:layout_width="160dp"
                 android:layout_height="wrap_content"
                 android:paddingStart="14dp"
-                android:text="Unidades"
+                android:text="Unidades x empaque"
                 android:textColor="#3E3E3E" />
 
             <EditText
@@ -112,13 +115,65 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:hint="Ej. 20"
+                android:hint="Ej. 10"
                 android:paddingStart="8dp"
                 android:textColor="#3E3E3E"
                 android:textColorHint="#B5B5B5"
                 android:textSize="15sp" />
         </LinearLayout>
 
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="14dp">
+
+                <TextView
+                    android:id="@+id/Cons"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="14dp"
+                    android:text="Concentración (mg)"
+                    android:textColor="#3E3E3E" />
+
+                <EditText
+                    android:id="@+id/ed4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:hint="Ej. 500"
+                    android:paddingStart="8dp"
+                    android:textColor="#3E3E3E"
+                    android:textColorHint="#B5B5B5"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingStart="14dp">
+
+                <TextView
+                    android:id="@+id/UP"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="14dp"
+                    android:text="Unidades totales"
+                    android:textColor="#3E3E3E" />
+
+                <EditText
+                    android:id="@+id/ed5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:hint="Ej. 10"
+                    android:paddingStart="8dp"
+                    android:textColor="#3E3E3E"
+                    android:textColorHint="#B5B5B5"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -130,73 +185,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="14dp"
+                    android:layout_marginTop="24dp"
                     android:background="@drawable/blueshape"
-                    android:paddingStart="24dp"
-                    android:paddingEnd="24dp"
+                    android:paddingStart="40dp"
+                    android:paddingEnd="40dp"
                     android:text="Agregar"
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:textColor="#3E3E3E"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-            <TableLayout
-                android:id="@+id/tb1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:stretchColumns="*"
-                android:textColor="#3E3E3E"
-                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-                <TableRow
-                    android:id="@+id/tbrow1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#3E3E3E"
-                    android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-                    <TextView
-                        android:id="@+id/t1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Nombre del producto"
-                        android:textColor="#3E3E3E"
-                        android:textSize="15sp"
-                        android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-                    <TextView
-                        android:id="@+id/t2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Precio"
-                        android:textColor="#3E3E3E"
-                        android:textSize="15sp"
-                        android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-                    <TextView
-                        android:id="@+id/t3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Cantidad"
-                        android:textColor="#3E3E3E"
-                        android:textSize="15sp"
-                        android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-
-                </TableRow>
-
-
-            </TableLayout>
-
-
-        </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

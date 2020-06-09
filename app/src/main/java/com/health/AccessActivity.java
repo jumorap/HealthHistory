@@ -181,7 +181,7 @@ DatabaseReference mDatabase ;
                     //Compartir información con otras clases
                     patientH = (String) map.get("nameAdd");
                     bornH = (String) map.get("birthDayAdd");
-                    phoneH = dataSnapshot.child("phoneemergency").getValue().toString();
+                    phoneH = dataSnapshot.child("phone").getValue().toString();
                     addressH = (String) map.get("cityAdd");
                     documentH = (String) map.get("documentAdd");
 

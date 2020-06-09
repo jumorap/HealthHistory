@@ -1,13 +1,10 @@
 package com.health;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,11 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -80,43 +74,58 @@ public class AddInventory extends AppCompatActivity {
         String qty = ed3.getText().toString().trim();
         String concent = ed4.getText().toString().trim();
         String total = ed5.getText().toString().trim();
+        mapHashAdd.put("product", prodname);
+        mapHashAdd.put("price", price);
+        mapHashAdd.put("count", qty);
+        mapHashAdd.put("concentra", concent);
+        mapHashAdd.put("total", total);
         if(!prodname.equals("") || !price.equals("") || !qty.equals("") || !concent.equals("") || !total.equals("")) {
-            mapHashAdd.put("product", prodname);
-            mapHashAdd.put("price", price);
-            mapHashAdd.put("count", qty);
-            mapHashAdd.put("concentra", concent);
-            mapHashAdd.put("total", total);
-            DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmssZ");
-            Date date = new Date();
-            String idProduct = dateFormat.format(date);
-            mDatabase.child("Products")
-                    .child(idProduct)
-                    .updateChildren(mapHashAdd)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Toast.makeText(AddInventory.this, "Se ha actualizado correctamente", Toast.LENGTH_LONG).show();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(AddInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
-                }
-            });
+            //if(!Arrays.asList(AddInvent.searchProd).contains(prodname)) {
+                DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmssZ");
+                Date date = new Date();
+                String idProduct = dateFormat.format(date);
+                mDatabase.child("Products")
+                        .child(idProduct)
+                        .updateChildren(mapHashAdd)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(AddInventory.this, "Se ha actualizado correctamente", Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
+                    }
+                });
             /*data.add(prodname);
             //Este es el arreglo que guarda los productos, pero se reinicia cada vez que termina >:|
             productArray.add(prodname);
             data1.add(price);
             data2.add(qty);*/
 
-            //setInTable();
+                //setInTable();
 
-            ed1.setText("");
-            ed2.setText("");
-            ed3.setText("");
-            ed4.setText("");
-            ed5.setText("");
-            //ed1.requestFocus();
+                ed1.setText("");
+                ed2.setText("");
+                ed3.setText("");
+                ed4.setText("");
+                ed5.setText("");
+                //ed1.requestFocus();
+            /*}else{
+                int indexOfProduct = AddInvent.searchProd.indexOf(prodname);
+                mDatabase.child("Products").child(AddInvent.idProduct.get(indexOfProduct)).child("total").updateChildren(mapHashAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(AddInventory.this, "Se ha actualizado correctamente", Toast.LENGTH_LONG).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(AddInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
+                    }
+                });;
+            }*/
 
         } else Toast.makeText(AddInventory.this, "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
     }

@@ -4,14 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AddInvent extends AppCompatActivity {
 
@@ -37,6 +32,8 @@ public class AddInvent extends AppCompatActivity {
     public ArrayList<String> listDatos = new ArrayList<String>();
 
     public static ArrayList<String> onlyProducts = new ArrayList<String>();
+    public static ArrayList<String> searchProd = new ArrayList<String>();
+    public static ArrayList<String> idProduct = new ArrayList<String>();
 
     /*public static final ArrayList<String> data = new ArrayList<String>();
     public static final ArrayList<String> data1 = new ArrayList<String>();
@@ -92,6 +89,8 @@ public class AddInvent extends AppCompatActivity {
                         String prCost = ds.child("price").getValue().toString() + " COP";
                         String prCount = ds.child("total").getValue().toString() + " Unidades en inventario";
                         onlyProducts.add(prName);
+                        searchProd.add(prName);
+                        idProduct.add(ds.toString());
                         listDatos.add(prName);
                         listDatos.add(prCost);
                         listDatos.add(prCount);

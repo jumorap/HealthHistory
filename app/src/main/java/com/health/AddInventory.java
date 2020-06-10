@@ -1,6 +1,7 @@
 package com.health;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -70,16 +70,41 @@ public class AddInventory extends AppCompatActivity {
     public void add(){
         Map<String, Object> mapHashAdd = new HashMap<>();
         String prodname = ed1.getText().toString().trim();
-        String price = ed2.getText().toString().trim();
-        String qty = ed3.getText().toString().trim();
-        String concent = ed4.getText().toString().trim();
-        String total = ed5.getText().toString().trim();
+        String priceA = ed2.getText().toString().trim();
+        String qtyA = ed3.getText().toString().trim();
+        String concentA = ed4.getText().toString().trim();
+        String totalA = ed5.getText().toString().trim();
+        int price = 0;
+        int qty = 0;
+        int concent = 0;
+        int total = 0;
+        try {
+            price = Integer.parseInt(priceA);
+        } catch (java.lang.NumberFormatException alpha){
+            Toast.makeText(AddInventory.this, "El precio es inválido, ingrese únicamente números", Toast.LENGTH_LONG).show();
+            return;
+        }try {
+            qty = Integer.parseInt(qtyA);
+        } catch (java.lang.NumberFormatException alpha){
+            Toast.makeText(AddInventory.this, "Las unidades x empaque son inválidas, ingrese únicamente números", Toast.LENGTH_LONG).show();
+            return;
+        }try {
+            concent = Integer.parseInt(concentA);
+        } catch (java.lang.NumberFormatException alpha){
+            Toast.makeText(AddInventory.this, "La concentración es inválida, ingrese únicamente números", Toast.LENGTH_LONG).show();
+            return;
+        }try {
+            total = Integer.parseInt(totalA);
+        } catch (java.lang.NumberFormatException alpha){
+            Toast.makeText(AddInventory.this, "Las unidades totales son inválidas, ingrese únicamente números", Toast.LENGTH_LONG).show();
+            return;
+        }
         mapHashAdd.put("product", prodname);
         mapHashAdd.put("price", price);
         mapHashAdd.put("count", qty);
         mapHashAdd.put("concentra", concent);
         mapHashAdd.put("total", total);
-        if(!prodname.equals("") || !price.equals("") || !qty.equals("") || !concent.equals("") || !total.equals("")) {
+        if(!prodname.equals("") || price != 0 || qty != 0  || concent != 0  || total != 0 ) {
             //if(!Arrays.asList(AddInvent.searchProd).contains(prodname)) {
                 DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmssZ");
                 Date date = new Date();

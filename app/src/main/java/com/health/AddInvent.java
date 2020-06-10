@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AddInvent extends AppCompatActivity {
 
@@ -25,8 +26,6 @@ public class AddInvent extends AppCompatActivity {
     public static FirebaseAuth mAuthD;
     //Database
     public static DatabaseReference mDatabase;
-    //public static TableLayout table;
-    //public AddInventory invent = new AddInventory();
 
     public RecyclerView recycler;
     public ArrayList<String> listDatos = new ArrayList<String>();
@@ -34,11 +33,6 @@ public class AddInvent extends AppCompatActivity {
     public static ArrayList<String> onlyProducts = new ArrayList<String>();
     public static ArrayList<String> searchProd = new ArrayList<String>();
     public static ArrayList<String> idProduct = new ArrayList<String>();
-
-    /*public static final ArrayList<String> data = new ArrayList<String>();
-    public static final ArrayList<String> data1 = new ArrayList<String>();
-    public static final ArrayList<String> data2 = new ArrayList<String>();
-    public static ArrayList<String> productArray = new ArrayList<>();*/
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -69,9 +63,6 @@ public class AddInvent extends AppCompatActivity {
                 startActivity(new Intent(AddInvent.this, DeleteInventory.class));
             }
         });
-
-
-        //setInTable();
     }
 
 
@@ -83,17 +74,21 @@ public class AddInvent extends AppCompatActivity {
                 if(dataSnapshot.exists()) {
                     listDatos.clear();
                     for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                        String prName = ds.child("product").getValue().toString() + "\n"
-                                + ds.child("concentra").getValue().toString() + "mg\n"
-                                + ds.child("count").getValue().toString() + " en empaque";
-                        String prCost = ds.child("price").getValue().toString() + " COP";
-                        String prCount = ds.child("total").getValue().toString() + " Unidades en inventario";
+                        /*String prName = Objects.requireNonNull(ds.child("product").getValue()).toString() + "\n"
+                                + Objects.requireNonNull(ds.child("concentra").getValue()).toString() + "mg\n"
+                                + Objects.requireNonNull(ds.child("count").getValue()).toString() + " en empaque";
+                        String prCost = Objects.requireNonNull(ds.child("price").getValue()).toString() + " COP";
+                        String prCount = Objects.requireNonNull(ds.child("total").getValue()).toString() + " Unidades en inventario";
                         onlyProducts.add(prName);
                         searchProd.add(prName);
                         idProduct.add(ds.toString());
                         listDatos.add(prName);
                         listDatos.add(prCost);
-                        listDatos.add(prCount);
+                        listDatos.add(prCount);*/
+                        Tree tree = new Tree();
+                        tree.insert(4, "Date");
+
+                        tree.recorrer(tree.root);
                     }
                     AdapterDatos adapter = new AdapterDatos(listDatos);
                     recycler.setAdapter(adapter);
@@ -107,62 +102,58 @@ public class AddInvent extends AppCompatActivity {
     }
 
 
+    public class Tree{
 
+        private class Node{
+            public Node father;
+            public Node right;
+            public Node left;
 
-/*
-    public void setInTable(){
-        mDatabase.child("Products").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()) {
-                    productArray.clear();
-                    data.clear();
-                    data1.clear();
-                    data2.clear();
-                    for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                        String productNameArr = ds.child("product").getValue().toString();
-                        String productPriceArr = ds.child("price").getValue().toString();
-                        String productCountArr = ds.child("count").getValue().toString();
+            public int key;
+            public Object contentData;
 
-                        productArray.add(productNameArr);
-                        data.add(productNameArr);
-                        data1.add(productPriceArr);
-                        data2.add(productCountArr);
-                    }
-                    setTableValues();
-                }
+            public Node(int position){
+                key = position;
+                right = null;
+                left = null;
+                father = null;
+                contentData = null;
             }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-    public void setTableValues(){
-
-        be.setText(Arrays.toString(new ArrayList[]{data}));
-        TableRow row = new TableRow(this);
-        TextView t1 = new TextView(this);
-        TextView t2 = new TextView(this);
-        TextView t3 = new TextView(this);
-
-        for (int i = 0; i < data.size(); i++) {
-
-            String pname = data.get(i);
-            String prc = data1.get(i);
-            String qtyy = data2.get(i);
-
-            t1.setText(pname);
-            t2.setText(prc);
-            t3.setText(qtyy);
-
         }
-        row.addView(t1);
-        row.addView(t2);
-        row.addView(t3);
-        table.addView(row);
+
+        Node root;
+        public Tree(){
+            root = null;
+        }
+
+        public void insert(int i, Object text){
+            Node n = new Node(i);
+            n.contentData = text;
+
+            if(root == null) root = n;
+            else {
+                Node aux = root;
+                while (aux != null){
+                    n.father = aux;
+                    if(n.key >= aux.key) aux = aux.right;
+                    else aux = aux.left;
+                }
+                if(n.key < n.father.key) n.father.left = n;
+                else n.father.right = n;
+            }
+        }
+
+        public void recorrer(Node n){
+            if (n != null){
+                recorrer(n.left);
+                listDatos.add((String) n.contentData);
+                listDatos.add(String.valueOf(n.key));
+                //https://www.youtube.com/watch?v=22AE6WklXBg
+                recorrer(n.right);
+            }
+        }
+
     }
-*/
+
 
 }

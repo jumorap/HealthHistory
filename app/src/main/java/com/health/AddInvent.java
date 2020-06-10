@@ -71,25 +71,27 @@ public class AddInvent extends AppCompatActivity {
         mDatabase.child("Products").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Tree tree = new Tree();
                 if(dataSnapshot.exists()) {
                     listDatos.clear();
                     for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                        /*String prName = Objects.requireNonNull(ds.child("product").getValue()).toString() + "\n"
+                        String prName = Objects.requireNonNull(ds.child("product").getValue()).toString() + "\n"
                                 + Objects.requireNonNull(ds.child("concentra").getValue()).toString() + "mg\n"
                                 + Objects.requireNonNull(ds.child("count").getValue()).toString() + " en empaque";
-                        String prCost = Objects.requireNonNull(ds.child("price").getValue()).toString() + " COP";
-                        String prCount = Objects.requireNonNull(ds.child("total").getValue()).toString() + " Unidades en inventario";
-                        onlyProducts.add(prName);
+                        String prCost = Objects.requireNonNull(ds.child("price").getValue()).toString()+ " COP";
+                        String prCount = Objects.requireNonNull(ds.child("total").getValue()).toString();
+                        /*onlyProducts.add(prName);
                         searchProd.add(prName);
                         idProduct.add(ds.toString());
                         listDatos.add(prName);
                         listDatos.add(prCost);
                         listDatos.add(prCount);*/
-                        Tree tree = new Tree();
-                        tree.insert(4, "Date");
 
-                        tree.recorrer(tree.root);
+                        tree.insert(Integer.parseInt(prCount), prName, prCost);
+
+
                     }
+                    tree.recorrer(tree.root);
                     AdapterDatos adapter = new AdapterDatos(listDatos);
                     recycler.setAdapter(adapter);
                 }
@@ -111,6 +113,7 @@ public class AddInvent extends AppCompatActivity {
 
             public int key;
             public Object contentData;
+            public Object totalUnit;
 
             public Node(int position){
                 key = position;
@@ -118,6 +121,7 @@ public class AddInvent extends AppCompatActivity {
                 left = null;
                 father = null;
                 contentData = null;
+                totalUnit = null;
             }
         }
 
@@ -126,9 +130,10 @@ public class AddInvent extends AppCompatActivity {
             root = null;
         }
 
-        public void insert(int i, Object text){
+        public void insert(int i, Object text, Object totalU){
             Node n = new Node(i);
             n.contentData = text;
+            n.totalUnit = totalU;
 
             if(root == null) root = n;
             else {
@@ -147,7 +152,9 @@ public class AddInvent extends AppCompatActivity {
             if (n != null){
                 recorrer(n.left);
                 listDatos.add((String) n.contentData);
-                listDatos.add(String.valueOf(n.key));
+                listDatos.add((String) n.totalUnit);
+                listDatos.add(n.key + " Unidades en inventario");
+                //listDatos.add(prCount);
                 //https://www.youtube.com/watch?v=22AE6WklXBg
                 recorrer(n.right);
             }

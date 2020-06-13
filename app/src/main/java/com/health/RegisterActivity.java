@@ -32,7 +32,6 @@ private EditText txtEmail;
 private EditText txtPassword;
 private Button btnRegister;
 private TextView notifRegist;
-private TextView textAccount;
     DatabaseReference mDatabase;
 
     private FirebaseAuth firebaseAuth;
@@ -53,19 +52,18 @@ private TextView textAccount;
         txtPassword = (EditText) findViewById(R.id.textPassword);
         notifRegist = (TextView) findViewById(R.id.notifRegist);
 
-        textAccount = (TextView) findViewById(R.id.textAccount);
 
         //listener
         btnRegister = (Button) findViewById(R.id.btnRegister);
         btnRegister.setOnClickListener(this);
 
-        textAccount.setOnClickListener(new View.OnClickListener() {
+        /*textAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this, MainActivity.class));
                 finish();
             }
-        });
+        });*/
     }
 
 

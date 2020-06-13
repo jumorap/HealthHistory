@@ -76,7 +76,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));
-                finish();
             }
         });
     }
@@ -108,33 +107,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         FirebaseUser usuario = firebaseAuth.getCurrentUser();
-                        if(!usuario.isEmailVerified()){
-                            Toast.makeText(MainActivity.this, "Correo electrónico no verificado", Toast.LENGTH_LONG).show();
-                            notif.setText("Correo electrónico no verificado");
-                        }else {
-
-                            if (task.isSuccessful()) {
-                                Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_LONG).show();
-                                int pos = email.indexOf("@");
-                                String user = email.substring(0, pos);
-                                Intent intent = new Intent(getApplication(), AccessActivity.class);
-                                intent.putExtra(AccessActivity.user, user);
-                                startActivity(intent);
-                                textEmail.setText("");
-                                textPass.setText("");
-                                notif.setText("Acceso exitoso");
-                                finish();
+                        try {
+                            if (!usuario.isEmailVerified()) {
+                                Toast.makeText(MainActivity.this, "Correo electrónico no verificado", Toast.LENGTH_LONG).show();
+                                notif.setText("Correo electrónico no verificado");
                             } else {
-                                Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
-                                notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
+
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(MainActivity.this, "Bienvenido", Toast.LENGTH_LONG).show();
+                                    int pos = email.indexOf("@");
+                                    String user = email.substring(0, pos);
+                                    Intent intent = new Intent(getApplication(), AccessActivity.class);
+                                    intent.putExtra(AccessActivity.user, user);
+                                    startActivity(intent);
+                                    textEmail.setText("");
+                                    textPass.setText("");
+                                    notif.setText("Acceso exitoso");
+                                    finish();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
+                                    notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
+                                }
                             }
+                        }catch (java.lang.NullPointerException Alpha){
+                            Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
+                            notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
                         }
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(MainActivity.this, "Usuario no registrado", Toast.LENGTH_LONG).show();
-                notif.setText("Usuario no registrado");
+                Toast.makeText(MainActivity.this, "Usuario o contraseña incorrectos\nPuede que su conexión sea inestable", Toast.LENGTH_LONG).show();
+                notif.setText("Usuario o contraseña incorrectos\nPuede que su conexión sea inestable");
             }
         });
     }

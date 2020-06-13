@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +39,6 @@ public class AddInventory extends AppCompatActivity {
     public static EditText ed1, ed2, ed3, ed4, ed5;
     public static Button btn1;
     public static ArrayList<String> productArray = new ArrayList<>();
-    public static TableLayout table;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,18 +105,19 @@ public class AddInventory extends AppCompatActivity {
         mapHashAdd.put("count", qty);
         mapHashAdd.put("concentra", concent);
         mapHashAdd.put("total", total);
-        if(!prodname.equals("") || price != 0 || qty != 0  || concent != 0  || total != 0 ) {
+        if(!prodname.equals("") || price != 0 || qty != 0  || concent != 0  || total != 0 && !Collections.singletonList(AddInvent.onlyProducts).contains(prodname)) {
             //if(!Arrays.asList(AddInvent.searchProd).contains(prodname)) {
                 DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmssZ");
                 Date date = new Date();
                 String idProduct = dateFormat.format(date);
+                mapHashAdd.put("ident", idProduct);
                 mDatabase.child("Products")
                         .child(idProduct)
                         .updateChildren(mapHashAdd)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
-                                Toast.makeText(AddInventory.this, "Se ha actualizado correctamente", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddInventory.this, "Se ha agregado correctamente", Toast.LENGTH_LONG).show();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -123,35 +125,11 @@ public class AddInventory extends AppCompatActivity {
                         Toast.makeText(AddInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
                     }
                 });
-            /*data.add(prodname);
-            //Este es el arreglo que guarda los productos, pero se reinicia cada vez que termina >:|
-            productArray.add(prodname);
-            data1.add(price);
-            data2.add(qty);*/
-
-                //setInTable();
-
                 ed1.setText("");
                 ed2.setText("");
                 ed3.setText("");
                 ed4.setText("");
                 ed5.setText("");
-                //ed1.requestFocus();
-            /*}else{
-                int indexOfProduct = AddInvent.searchProd.indexOf(prodname);
-                mDatabase.child("Products").child(AddInvent.idProduct.get(indexOfProduct)).child("total").updateChildren(mapHashAdd).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Toast.makeText(AddInventory.this, "Se ha actualizado correctamente", Toast.LENGTH_LONG).show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AddInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
-                    }
-                });;
-            }*/
-
         } else Toast.makeText(AddInventory.this, "Por favor, complete todos los campos", Toast.LENGTH_LONG).show();
     }
 
@@ -160,6 +138,7 @@ public class AddInventory extends AppCompatActivity {
 
 //Metodo que se usa para llamar el arreglo de productos llenos :)
     public ArrayList<String> getArray() {
+        Collections.sort(AddInvent.onlyProducts);
         return AddInvent.onlyProducts;
     }
 }

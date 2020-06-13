@@ -80,15 +80,9 @@ public class AddInvent extends AppCompatActivity {
                                 + Objects.requireNonNull(ds.child("count").getValue()).toString() + " en empaque";
                         String prCost = Objects.requireNonNull(ds.child("price").getValue()).toString()+ " COP";
                         String prCount = Objects.requireNonNull(ds.child("total").getValue()).toString();
-                        /*onlyProducts.add(prName);
-                        searchProd.add(prName);
-                        idProduct.add(ds.toString());
-                        listDatos.add(prName);
-                        listDatos.add(prCost);
-                        listDatos.add(prCount);*/
+                        onlyProducts.add(Objects.requireNonNull(ds.child("product").getValue()).toString());
 
                         tree.insert(Integer.parseInt(prCount), prName, prCost);
-
 
                     }
                     tree.recorrer(tree.root);
@@ -154,9 +148,10 @@ public class AddInvent extends AppCompatActivity {
                 listDatos.add((String) n.contentData);
                 listDatos.add((String) n.totalUnit);
                 listDatos.add(n.key + " Unidades en inventario");
-                //listDatos.add(prCount);
                 //https://www.youtube.com/watch?v=22AE6WklXBg
+
                 recorrer(n.right);
+
             }
         }
 

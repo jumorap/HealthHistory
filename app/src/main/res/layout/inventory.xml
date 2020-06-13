@@ -64,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:hint="Ej. Acetaminofén"
+                android:inputType="textShortMessage"
                 android:paddingStart="8dp"
                 android:textColor="#3E3E3E"
                 android:textColorHint="#B5B5B5"

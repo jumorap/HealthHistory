@@ -274,7 +274,7 @@ public class PdfActivity extends AppCompatActivity {
                     AlertDialog titulo  = alerta.create();
                     titulo.setTitle("Certificado Generado");
                     titulo.show();
-                }catch (IOException e ){
+                }catch (IOException e ) {
                     e.printStackTrace();
                     AlertDialog.Builder alerta = new AlertDialog.Builder(PdfActivity.this);
                     alerta.setMessage("Ha ocurrido un problema, por favor comuníquese con atención al cliente")

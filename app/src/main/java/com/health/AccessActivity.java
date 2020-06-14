@@ -29,6 +29,7 @@ private ImageButton calendarInfo;
 private ImageButton history;
 private ImageButton uploadHistory;
 private ImageButton addInventa;
+private ImageButton pdf;
 
     private TextView textDesNameA;
     private TextView textDesCcA;
@@ -80,6 +81,7 @@ DatabaseReference mDatabase ;
         history = (ImageButton) findViewById(R.id.history);
         uploadHistory = (ImageButton) findViewById(R.id.uploadHistory);
         addInventa = (ImageButton) findViewById(R.id.addInventa);
+        pdf = (ImageButton) findViewById(R.id.pdf);
 
         //Se invoca al método que escribe el correo en el ingreso
         getUserInfo();
@@ -120,6 +122,12 @@ DatabaseReference mDatabase ;
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AccessActivity.this, AddInvent.class));
+            }
+        });
+        pdf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccessActivity.this, PdfActivity.class));
             }
         });
         //noRegisterMessage();

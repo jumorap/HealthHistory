@@ -135,8 +135,8 @@ public class DeleteInventory extends AppCompatActivity {
                                             }
                                         });
                                     }
+                                    break;
                                 }
-                                break;
                             }
                         }
                     }

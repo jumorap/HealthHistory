@@ -195,9 +195,7 @@ public class DeleteInventory extends AppCompatActivity {
 
             public V remove(K key) {
                 int bucketIndex = getBucketIndex(key);
-
                 HashNode<K, V> head = bucketArray.get(bucketIndex);
-
                 HashNode<K, V> prev = null;
                 while (head != null) {
                     if (head.key.equals(key)) break;

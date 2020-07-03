@@ -28,11 +28,9 @@ public class AddInvent extends AppCompatActivity {
     public static DatabaseReference mDatabase;
 
     public RecyclerView recycler;
-    public ArrayList<String> listDatos = new ArrayList<String>();
+    public ArrayList<String> listDatos = new ArrayList<>();
 
-    public static ArrayList<String> onlyProducts = new ArrayList<String>();
-    public static ArrayList<String> searchProd = new ArrayList<String>();
-    public static ArrayList<String> idProduct = new ArrayList<String>();
+    public static ArrayList<String> onlyProducts = new ArrayList<>();
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {

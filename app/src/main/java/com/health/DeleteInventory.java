@@ -29,7 +29,6 @@ import static com.health.R.layout.delete;
 public class DeleteInventory extends AppCompatActivity {
     public Spinner spinnerProduct, spinnerQuantity;
     public Button deleteButton;
-    public ArrayList<String> productsArray = new ArrayList<>();
 
     public static FirebaseAuth mAuthD;
     //Database
@@ -49,7 +48,7 @@ public class DeleteInventory extends AppCompatActivity {
     public void delete(){
         spinnerProduct = findViewById(R.id.spinnerProduct);
         spinnerQuantity= findViewById(R.id.spinnerQuantity);
-        ArrayList<String> quantityArray = new ArrayList<>();
+        final ArrayList<String> quantityArray = new ArrayList<>();
 
         AddInventory products_array = new AddInventory();
 
@@ -63,7 +62,7 @@ public class DeleteInventory extends AppCompatActivity {
         quantityArray.add("2");
         quantityArray.add("1");
 
-        ArrayAdapter adpProducts = new ArrayAdapter(DeleteInventory.this, android.R.layout.simple_spinner_dropdown_item,products_array.getArray());
+        ArrayAdapter<String> adpProducts = new ArrayAdapter<>(DeleteInventory.this, android.R.layout.simple_spinner_dropdown_item,products_array.getArray());
         spinnerProduct.setAdapter(adpProducts);
         final String[] dataSpinnerText = {""};
         spinnerProduct.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -84,7 +83,7 @@ public class DeleteInventory extends AppCompatActivity {
 
         final String[] dataSpinner = {""};
 
-        ArrayAdapter adpQuantity = new ArrayAdapter(DeleteInventory.this, android.R.layout.simple_spinner_dropdown_item,quantityArray);
+        ArrayAdapter<String> adpQuantity = new ArrayAdapter<>(DeleteInventory.this, android.R.layout.simple_spinner_dropdown_item,quantityArray);
         spinnerQuantity.setAdapter(adpQuantity);
 
         spinnerQuantity.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -110,14 +109,16 @@ public class DeleteInventory extends AppCompatActivity {
                 mDatabase.child("Products").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        Map<String, Object> mapHashAdd = new HashMap<>();
+                        HashMap<String, Object> mapHashAdd = new HashMap<>();
+                        int generalRectif = 1;
                         if(dataSnapshot.exists()) {
                             for(DataSnapshot ds: dataSnapshot.getChildren()) {
                                 String prName = Objects.requireNonNull(ds.child("product").getValue()).toString();
-                                if(dataSpinnerText[0].equals(prName)){
+                                if(dataSpinnerText[0].equals(prName) && generalRectif == 1){
+                                    generalRectif = 0;//Don't remove
                                     String prCount = Objects.requireNonNull(ds.child("total").getValue()).toString();
                                     int newTotal = Integer.parseInt(prCount) - Integer.parseInt(dataSpinner[0]);
-                                    if(newTotal>=0){
+                                    if(newTotal >= 0){
                                         mapHashAdd.put("total", newTotal);
 
                                         mDatabase.child("Products")
@@ -134,9 +135,11 @@ public class DeleteInventory extends AppCompatActivity {
                                                 Toast.makeText(DeleteInventory.this, "Hubo un error, rectifique su conexión", Toast.LENGTH_LONG).show();
                                             }
                                         });
+                                        return;
                                     }
-                                    break;
+                                    return;
                                 }
+                                return;
                             }
                         }
                     }
@@ -150,4 +153,113 @@ public class DeleteInventory extends AppCompatActivity {
         });
 
     }
+
+
+
+        public static class HashNode<K, V> {
+            K key;
+            V value;
+            HashNode<K, V> next;
+
+            public HashNode(K key, V value) {
+                this.key = key;
+                this.value = value;
+            }
+        }
+
+        public static class Map<K, V> {
+            private ArrayList<HashNode<K, V>> bucketArray;
+            private int numBuckets;
+            private int size;
+
+            public Map() {
+                bucketArray = new ArrayList<>();
+                numBuckets = 10;
+                size = 0;
+
+                for (int i = 0; i < numBuckets; i++) bucketArray.add(null);
+            }
+
+            public int size() {
+                return size;
+            }
+
+            public boolean isEmpty() {
+                return size() == 0;
+            }
+
+            private int getBucketIndex(K key) {
+                int hashCode = key.hashCode();
+                return hashCode % numBuckets;
+            }
+
+            public V remove(K key) {
+                int bucketIndex = getBucketIndex(key);
+
+                HashNode<K, V> head = bucketArray.get(bucketIndex);
+
+                HashNode<K, V> prev = null;
+                while (head != null) {
+                    if (head.key.equals(key)) break;
+                    prev = head;
+                    head = head.next;
+                }
+
+                if (head == null) return null;
+                size--;
+                if (prev != null) prev.next = head.next;
+                else bucketArray.set(bucketIndex, head.next);
+
+                return head.value;
+            }
+
+            public void add(K key, V value) {
+                int bucketIndex = getBucketIndex(key);
+                HashNode<K, V> head = bucketArray.get(bucketIndex);
+
+                while (head != null) {
+                    if (head.key.equals(key)) {
+                        head.value = value;
+                        return;
+                    }
+                    head = head.next;
+                }
+
+                size++;
+                head = bucketArray.get(bucketIndex);
+                HashNode<K, V> newNode = new HashNode<>(key, value);
+                newNode.next = head;
+                bucketArray.set(bucketIndex, newNode);
+
+
+                if ((1.0 * size) / numBuckets >= 0.7) {
+                    ArrayList<HashNode<K, V>> temp = bucketArray;
+                    bucketArray = new ArrayList<>();
+                    numBuckets = 2 * numBuckets;
+                    size = 0;
+                    for (int i = 0; i < numBuckets; i++) bucketArray.add(null);
+
+                    for (HashNode<K, V> headNode : temp) {
+                        while (headNode != null) {
+                            add(headNode.key, headNode.value);
+                            headNode = headNode.next;
+                        }
+                    }
+                }
+            }
+
+            /*public static void main(String[] args) {
+                Map<String, Integer> map = new Map<>();
+                map.add("this", 1);
+                map.add("coder", 2);
+                map.add("this", 4);
+                map.add("hi", 5);
+                System.out.println(map.size());
+                System.out.println(map.remove("this"));
+                System.out.println(map.remove("this"));
+                System.out.println(map.size());
+                System.out.println(map.isEmpty());
+            }*/
+        }
+
 }

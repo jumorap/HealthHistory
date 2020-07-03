@@ -45,15 +45,9 @@ public class CustomCalendarView extends LinearLayout {
     Calendar calendar = Calendar.getInstance(Locale.ENGLISH);
     Context context;
     SimpleDateFormat dateFormat = new SimpleDateFormat( "MMMM yyyy", Locale.ENGLISH);
-    SimpleDateFormat monthFormat = new SimpleDateFormat( "MMMM", Locale.ENGLISH);
-    SimpleDateFormat yearFormat = new SimpleDateFormat(  "yyyy",Locale.ENGLISH);
-    SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
 
     MyGrindAdapter myGrindAdapter;
-    AlertDialog alertDialog;
-
-
 
     List<Date> dates = new ArrayList<>();
     List<Events> eventsList= new ArrayList<>();
@@ -96,9 +90,6 @@ public class CustomCalendarView extends LinearLayout {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent myIntent = new Intent(view.getContext(), DoctorsMainActivity.class);
                 context.startActivity(myIntent);
-                //startActivity
-
-//AQUI VA LA LISTA DESPLEGABLE~~~~ suerte jajajaja
             }
         });
 

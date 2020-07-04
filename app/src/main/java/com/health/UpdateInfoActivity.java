@@ -2,13 +2,20 @@ package com.health;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,8 +30,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Calendar;
 
 public class UpdateInfoActivity extends AppCompatActivity implements View.OnClickListener {
 private RadioButton radioGenderMan;
@@ -33,9 +42,13 @@ private EditText city;
 private EditText local;
 private EditText address;
 private EditText birthDay;
+    private int nYearInt, nMonthInt,nDayInt, sYearInt, sMonthInt, sDayInt;
+    static final int DATE_ID = 0;
+    Calendar C = Calendar.getInstance();
 private EditText ocupa;
 private EditText civil;
 private EditText blood;
+private Spinner spinner;
 private EditText nameEmergency;
 private EditText phoneEmergency;
 private Button upload;
@@ -103,16 +116,51 @@ private DatabaseReference mDatabase;
         local = (EditText) findViewById(R.id.local);
         address = (EditText) findViewById(R.id.address);
         birthDay = (EditText) findViewById(R.id.birthDay);
+        sMonthInt = C.get(Calendar.MONTH);
+        sDayInt = C.get(Calendar.DAY_OF_MONTH);
+        sYearInt = C.get(Calendar.YEAR);
+        birthDay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog(DATE_ID);
+            }
+        });
         ocupa = (EditText) findViewById(R.id.ocupa);
         civil = (EditText) findViewById(R.id.civil);
         blood = (EditText) findViewById(R.id.blood);
+        spinner = (Spinner) findViewById(R.id.spinner);
         nameEmergency = (EditText) findViewById(R.id.nameEmergency);
         phoneEmergency = (EditText) findViewById(R.id.phoneEmergency);
 
         upload = (Button) findViewById(R.id.update);
         upload.setOnClickListener(this);
 
+        ArrayList<String> bloodTypeList = new ArrayList<>();
+        bloodTypeList.add("Grupo sanguíneo");
+        bloodTypeList.add("O-");
+        bloodTypeList.add("O+");
+        bloodTypeList.add("A-");
+        bloodTypeList.add("A+");
+        bloodTypeList.add("B-");
+        bloodTypeList.add("B+");
+        bloodTypeList.add("AB-");
+        bloodTypeList.add("AB+");
+        ArrayAdapter adp = new ArrayAdapter(UpdateInfoActivity.this, android.R.layout.simple_spinner_dropdown_item,bloodTypeList);
 
+        spinner.setAdapter(adp);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String elementoArray = (String) spinner.getAdapter().getItem(position);
+
+                //Toast.makeText(DoctorsMainActivity.this, "Médico: "+elementoArray, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         notifCamps = (TextView) findViewById(R.id.notifCamps);
         getUserInfo();
@@ -148,15 +196,15 @@ private DatabaseReference mDatabase;
 
                     if(genderAdd.equals("Masculino")) radioGenderMan.setChecked(true);
                     else if(genderAdd.equals("Femenino")) radioGenderWoman.setChecked(true);
-                    if(cardiacAddYN.equals("Yes")) radioYesCardiac.setChecked(true);
+                    if(cardiacAddYN.equals("Sí")) radioYesCardiac.setChecked(true);
                     else if(cardiacAddYN.equals("No")) radioNoCardiac.setChecked(true);
-                    if(cancerAddYN.equals("Yes")) radioYesCancer.setChecked(true);
+                    if(cancerAddYN.equals("Sí")) radioYesCancer.setChecked(true);
                     else if(cancerAddYN.equals("No")) radioNoCancer.setChecked(true);
-                    if(cirugAddYN.equals("Yes")) radioYesCirug.setChecked(true);
+                    if(cirugAddYN.equals("Sí")) radioYesCirug.setChecked(true);
                     else if(cirugAddYN.equals("No")) radioNoCirug.setChecked(true);
-                    if(alergicAddYN.equals("Yes")) radioYesAlergic.setChecked(true);
+                    if(alergicAddYN.equals("Sí")) radioYesAlergic.setChecked(true);
                     else if(alergicAddYN.equals("No")) radioNoAlergic.setChecked(true);
-                    if(etsAddYN.equals("Yes")) radioYesEts.setChecked(true);
+                    if(etsAddYN.equals("Sí")) radioYesEts.setChecked(true);
                     else if(etsAddYN.equals("No")) radioNoEts.setChecked(true);
 
                     city.setText(cityAdd);
@@ -189,23 +237,23 @@ private DatabaseReference mDatabase;
         if(radioGenderMan.isChecked()) gender = "Masculino";
         else if(radioGenderWoman.isChecked()) gender = "Femenino";
         String cardiacYN = "";
-        if(radioYesCardiac.isChecked()) cardiacYN = "Yes";
+        if(radioYesCardiac.isChecked()) cardiacYN = "Sí";
         else if(radioNoCardiac.isChecked()) cardiacYN = "No";
         String cardiacR = textCardiac.getText().toString().trim();
         String cancerYN = "";
-        if(radioYesCancer.isChecked()) cancerYN = "Yes";
+        if(radioYesCancer.isChecked()) cancerYN = "Sí";
         else if(radioNoCancer.isChecked()) cancerYN = "No";
         String cancerR = textCancer.getText().toString().trim();
         String cirugYN = "";
-        if(radioYesCirug.isChecked()) cirugYN = "Yes";
+        if(radioYesCirug.isChecked()) cirugYN = "Sí";
         else if(radioNoCirug.isChecked()) cirugYN = "No";
         String cirugR = textCirug.getText().toString().trim();
         String alergicYN = "";
-        if(radioYesAlergic.isChecked()) alergicYN = "Yes";
+        if(radioYesAlergic.isChecked()) alergicYN = "Sí";
         else if(radioNoAlergic.isChecked()) alergicYN = "No";
         String alergicR = textAlergic.getText().toString().trim();
         String etsYN = "";
-        if(radioYesEts.isChecked()) etsYN = "Yes";
+        if(radioYesEts.isChecked()) etsYN = "Sí";
         else if(radioNoEts.isChecked()) etsYN = "No";
         String etsR = textEts.getText().toString().trim();
 
@@ -218,7 +266,6 @@ private DatabaseReference mDatabase;
         final String bloodR = blood.getText().toString().trim();
         final String nameEmergencyR = nameEmergency.getText().toString().trim();
         final String phoneEmergencyR = phoneEmergency.getText().toString().trim();
-
 
 
         if(gender.isEmpty() || cardiacYN.isEmpty() || cancerYN.isEmpty() || cirugYN.isEmpty() || alergicYN.isEmpty() || etsYN.isEmpty() || cityR.isEmpty() || localR.isEmpty() ||
@@ -286,4 +333,33 @@ private DatabaseReference mDatabase;
         updateInfoUser();
     }
 
+    private DatePickerDialog.OnDateSetListener mDateSetListener =
+            new DatePickerDialog.OnDateSetListener() {
+                public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                    nYearInt = year;
+                    nMonthInt = monthOfYear;
+                    nDayInt = dayOfMonth;
+                    birthDay.setText((nMonthInt + 1) + "/" + nDayInt + "/" + nYearInt);
+                }
+
+            };
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == DATE_ID) {
+            return new DatePickerDialog(this, mDateSetListener, sYearInt, sMonthInt, sDayInt);
+        }
+        return null;
+    }
+
+    static class HashNode<K, V> {
+        public K key;
+        public V value;
+        public AccessActivity.HashNode<K, V> next;
+
+        public HashNode(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
 }

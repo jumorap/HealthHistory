@@ -33,12 +33,8 @@ public class AddInventory extends AppCompatActivity {
     //Database
     public static DatabaseReference mDatabase;
 
-    public static final ArrayList<String> data = new ArrayList<String>();
-    public static final ArrayList<String> data1 = new ArrayList<String>();
-    public static final ArrayList<String> data2 = new ArrayList<String>();
     public static EditText ed1, ed2, ed3, ed4, ed5;
     public static Button btn1;
-    public static ArrayList<String> productArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

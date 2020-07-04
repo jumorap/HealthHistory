@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -153,45 +154,43 @@ DatabaseReference mDatabase ;
 
 
 
-
-
-                    Map<String, Object> map = new HashMap<>();
-                    map.put("nameAdd", dataSnapshot.child("name").getValue().toString());
-                    map.put("documentAdd", dataSnapshot.child("cc").getValue().toString());
-                    map.put("emailAdd", dataSnapshot.child("email").getValue().toString());
-                    map.put("cityAdd", dataSnapshot.child("address").getValue().toString() + ", " + dataSnapshot.child("city").getValue().toString() + ", " + dataSnapshot.child("local").getValue().toString());
-                    map.put("birthDayAdd", dataSnapshot.child("birthday").getValue().toString());
-                    map.put("ocupaAdd", dataSnapshot.child("ocupa").getValue().toString());
+                    Map<String, Object> map = new Map<>();
+                    map.put("name", dataSnapshot.child("name").getValue().toString());
+                    map.put("document", dataSnapshot.child("cc").getValue().toString());
+                    map.put("email", dataSnapshot.child("email").getValue().toString());
+                    map.put("city", dataSnapshot.child("address").getValue().toString() + ", " + dataSnapshot.child("city").getValue().toString() + ", " + dataSnapshot.child("local").getValue().toString());
+                    map.put("birthday", dataSnapshot.child("birthday").getValue().toString());
+                    map.put("ocupa", dataSnapshot.child("ocupa").getValue().toString());
                     //map.put("civilAdd", dataSnapshot.child("civil").getValue().toString());
-                    map.put("bloodAdd", dataSnapshot.child("blood").getValue().toString());
-                    map.put("nameEmergencyAdd", dataSnapshot.child("nameemergency").getValue().toString() + "\n+57 " +dataSnapshot.child("phoneemergency").getValue().toString());
-                    map.put("cardiacAddYN", dataSnapshot.child("yncardiac").getValue().toString() + ", " + dataSnapshot.child("cardiacrecord").getValue().toString());
-                    map.put("cancerAddYN", dataSnapshot.child("yncancer").getValue().toString() + ", " + dataSnapshot.child("cancerrecord").getValue().toString());
-                    map.put("cirugAddYN", dataSnapshot.child("yncirug").getValue().toString() + ", " + dataSnapshot.child("cirugrecord").getValue().toString());
-                    map.put("alergicAddYN", dataSnapshot.child("ynalergic").getValue().toString() + ", " + dataSnapshot.child("alergicrecord").getValue().toString());
-                    map.put("etsAddYN", dataSnapshot.child("ynets").getValue().toString() + ", " + dataSnapshot.child("etsrecord").getValue().toString());
-                    map.put("genderAdd", dataSnapshot.child("gender").getValue().toString());
+                    map.put("blood", dataSnapshot.child("blood").getValue().toString());
+                    map.put("namemergency", dataSnapshot.child("nameemergency").getValue().toString() + "\n+57 " +dataSnapshot.child("phoneemergency").getValue().toString());
+                    map.put("cardiac", dataSnapshot.child("yncardiac").getValue().toString() + ", " + dataSnapshot.child("cardiacrecord").getValue().toString());
+                    map.put("cance", dataSnapshot.child("yncancer").getValue().toString() + ", " + dataSnapshot.child("cancerrecord").getValue().toString());
+                    map.put("cirug", dataSnapshot.child("yncirug").getValue().toString() + ", " + dataSnapshot.child("cirugrecord").getValue().toString());
+                    map.put("alerg", dataSnapshot.child("ynalergic").getValue().toString() + ", " + dataSnapshot.child("alergicrecord").getValue().toString());
+                    map.put("ets", dataSnapshot.child("ynets").getValue().toString() + ", " + dataSnapshot.child("etsrecord").getValue().toString());
+                    map.put("gende", dataSnapshot.child("gender").getValue().toString());
 
-                    textDesNameA.setText(map.get("nameAdd").toString());
-                    textDesCcA.setText(map.get("documentAdd").toString());
-                    textDesEmailA.setText(map.get("emailAdd").toString());
-                    textDesCityA.setText(map.get("cityAdd").toString());
-                    textDesOcupaA.setText(map.get("ocupaAdd").toString());
-                    textDesBloodA.setText(map.get("bloodAdd").toString());
-                    textDesContactA.setText(map.get("nameEmergencyAdd").toString());
-                    textDescCardiacA.setText(map.get("cardiacAddYN").toString());
-                    textDesCancerA.setText(map.get("cancerAddYN").toString());
-                    textDesCirugA.setText(map.get("cirugAddYN").toString());
-                    textDesAlergicA.setText(map.get("alergicAddYN").toString());
-                    textDesEtsA.setText(map.get("etsAddYN").toString());
-                    textDesGenderA.setText(map.get("genderAdd").toString());
+                    textDesNameA.setText(map.get("name").toString());
+                    textDesCcA.setText(map.get("document").toString());
+                    textDesEmailA.setText(map.get("email").toString());
+                    textDesCityA.setText(map.get("city").toString());
+                    textDesOcupaA.setText(map.get("ocupa").toString());
+                    textDesBloodA.setText(map.get("blood").toString());
+                    textDesContactA.setText(map.get("namemergency").toString());
+                    textDescCardiacA.setText(map.get("cardiac").toString());
+                    textDesCancerA.setText(map.get("cance").toString());
+                    textDesCirugA.setText(map.get("cirug").toString());
+                    textDesAlergicA.setText(map.get("alerg").toString());
+                    textDesEtsA.setText(map.get("ets").toString());
+                    textDesGenderA.setText(map.get("gende").toString());
 
                     //Compartir información con otras clases
-                    patientH = (String) map.get("nameAdd");
-                    bornH = (String) map.get("birthDayAdd");
+                    patientH = (String) map.get("name");
+                    bornH = (String) map.get("birthday");
                     phoneH = dataSnapshot.child("phone").getValue().toString();
-                    addressH = (String) map.get("cityAdd");
-                    documentH = (String) map.get("documentAdd");
+                    addressH = (String) map.get("city");
+                    documentH = (String) map.get("document");
 
 
 
@@ -240,4 +239,95 @@ DatabaseReference mDatabase ;
         });
     }*/
 
+
+
+
+
+
+
+    static class HashNode<K, V> {
+        public K key;
+        public V value;
+        public HashNode<K, V> next;
+
+        public HashNode(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
+    static class Map<K, V> {
+        private ArrayList<HashNode<K, V>> bucketArray;
+        private int numBuckets;
+        private int size;
+        public int bucketIndex;
+
+        public Map() {
+            bucketArray = new ArrayList<>();
+            numBuckets = 10;
+            size = 0;
+            for (int i = 0; i < numBuckets; i++) bucketArray.add(null);
+        }
+
+        public int size() {
+            return size;
+        }
+
+        public boolean isEmpty() {
+            return size() == 0;
+        }
+
+        private int getBucketIndex(K key) {
+            int hashCode = key.hashCode();
+            return hashCode % numBuckets;
+        }
+
+        public V remove(K key) {
+            int bucketIndex = getBucketIndex(key);
+            HashNode<K, V> head = bucketArray.get(bucketIndex);
+            HashNode<K, V> prev = null;
+            while (head != null) {
+                if (head.key.equals(key)) break;
+                prev = head;
+                head = head.next;
+            }
+
+            if (head == null) return null;
+            size--;
+            if (prev != null) prev.next = head.next;
+            else bucketArray.set(bucketIndex, head.next);
+
+            return head.value;
+        }
+
+        public V get(K key) {
+            int bucketIndex = getBucketIndex(key);
+            HashNode<K, V> head = bucketArray.get(bucketIndex);
+
+            while (head != null) {
+                if (head.key.equals(key)) return head.value;
+                head = head.next;
+            }
+
+            return null;
+        }
+
+        public void put(K key, V value) {
+            bucketIndex = getBucketIndex(key);
+            HashNode<K, V> head = bucketArray.get(bucketIndex);
+
+            while (head != null) {
+                if (head.key.equals(key)) {
+                    head.value = value;
+                    return;
+                }
+                head = head.next;
+            }
+            head = bucketArray.get(bucketIndex);
+            HashNode<K, V> newNode = new HashNode<>(key, value);
+            newNode.next = head;
+            bucketArray.set(bucketIndex, newNode);
+            size++;
+        }
+    }
 }

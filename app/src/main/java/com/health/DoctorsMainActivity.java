@@ -2,10 +2,12 @@ package com.health;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -15,19 +17,41 @@ public class DoctorsMainActivity extends AppCompatActivity {
 
     private Spinner spinnerMedico;
     private Spinner spinnerHora;
+    private Button buttonCancel;
+    private Button buttonConfirm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.doctors_activity_main);
 
+        buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
+        buttonCancel = (Button) findViewById(R.id.buttonCancel);
         spinnerMedico = findViewById(R.id.spinnerMedico);
+        spinnerHora = findViewById(R.id.spinnerHora);
+
+        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DoctorsMainActivity.this,MaintenanceActivity.class));
+                Toast.makeText(DoctorsMainActivity.this, "Lo sentimos, continuamos trabajando en esta función", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+        buttonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DoctorsMainActivity.this,CalendarMainActivity.class));
+                finish();
+            }
+        });
 
         ArrayList<String> elementosArray = new ArrayList<>();
         elementosArray.add("Seleccione su médico");
-        elementosArray.add("Medico1");
-        elementosArray.add("Medico2");
-        elementosArray.add("Medico3");
+        elementosArray.add("Óscar Alexander Guevara Cruz");
+        elementosArray.add("Delma Lucía Zea Llanos");
+        elementosArray.add("Fabio Ernesto Grosso Ospina");
 
 
         ArrayAdapter adp = new ArrayAdapter(DoctorsMainActivity.this, android.R.layout.simple_spinner_dropdown_item,elementosArray);
@@ -50,13 +74,16 @@ public class DoctorsMainActivity extends AppCompatActivity {
 
         //----------------------------------------------------------------------------------------------------
 
-        spinnerHora = findViewById(R.id.spinnerHora);
 
         ArrayList<String> elementosHora = new ArrayList<>();
         elementosHora.add("Seleccione hora de consulta");
         elementosHora.add("9:00");
         elementosHora.add("9:20");
-        elementosHora.add("9:40");
+        elementosHora.add("10:00");
+        elementosHora.add("10:20");
+        elementosHora.add("10:40");
+        elementosHora.add("11:00");
+        elementosHora.add("11:20");
 
 
         ArrayAdapter adpHora = new ArrayAdapter(DoctorsMainActivity.this, android.R.layout.simple_spinner_dropdown_item,elementosHora);

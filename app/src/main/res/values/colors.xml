@@ -3,6 +3,7 @@
     <color name="NORMAL">#ff0099cc</color>
     <color name="NORMALDark">#4D9ED3</color>
     <color name="NORMALButton">#5186A8</color>
+    <color name="PaulaBlue">#30A1BE</color>
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>

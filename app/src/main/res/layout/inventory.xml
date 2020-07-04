@@ -160,8 +160,9 @@
                     android:id="@+id/UP"
                     android:layout_width="160dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:paddingStart="14dp"
-                    android:text="Unidades totales:"
+                    android:text="Unidades totales en inventario:"
                     android:textColor="#3E3E3E" />
 
                 <EditText

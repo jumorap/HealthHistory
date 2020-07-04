@@ -105,8 +105,9 @@ public class AddInventory extends AppCompatActivity {
             //if(!Arrays.asList(AddInvent.searchProd).contains(prodname)) {
                 DateFormat dateFormat = new SimpleDateFormat("yyMMddHHmmssZ");
                 Date date = new Date();
+                long ident = (long) ((dateFormat.format(date).hashCode()*0.00005) % 5000000);
                 String idProduct = dateFormat.format(date);
-                mapHashAdd.put("ident", idProduct);
+                mapHashAdd.put("ident", ident);
                 mDatabase.child("Products")
                         .child(idProduct)
                         .updateChildren(mapHashAdd)

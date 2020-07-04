@@ -146,7 +146,6 @@ public class AddInvent extends AppCompatActivity {
                 listDatos.add((String) n.contentData);
                 listDatos.add((String) n.totalUnit);
                 listDatos.add(n.key + " Unidades en inventario");
-                //https://www.youtube.com/watch?v=22AE6WklXBg
 
                 recorrer(n.right);
 

@@ -351,15 +351,4 @@ private DatabaseReference mDatabase;
         }
         return null;
     }
-
-    static class HashNode<K, V> {
-        public K key;
-        public V value;
-        public AccessActivity.HashNode<K, V> next;
-
-        public HashNode(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
 }

@@ -19,11 +19,22 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="18dp"
+                android:paddingBottom="14dp"
+                android:text="Inventario Farmacia"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:layout_width="282dp"
                 android:layout_height="80dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/invetario" />
 
             <LinearLayout
@@ -65,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:paddingTop="18dp"
+            android:paddingTop="12dp"
             android:paddingBottom="14dp"
             android:text="Visualizar inventario"
             android:textColor="@android:color/holo_blue_dark"

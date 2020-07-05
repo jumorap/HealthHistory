@@ -33,7 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="20dp"
-                android:text="Información médica"
+                android:text="Información general"
                 android:textAlignment="center"
                 android:textColor="?android:attr/colorLongPressedHighlight"
                 android:textSize="20dp" />
@@ -103,7 +103,7 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="Ocupación actual"
-                android:inputType="text"
+                android:inputType="textShortMessage|text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
@@ -137,6 +137,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
             </RadioGroup>
+
             <EditText
                 android:id="@+id/civil"
                 android:layout_width="match_parent"
@@ -146,7 +147,7 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="Estado civil"
-                android:inputType="text"
+                android:inputType="textShortMessage|text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
@@ -160,7 +161,7 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="Grupo sanguineo (A+, O-, AB+, etc)"
-                android:inputType="text"
+                android:inputType="textShortMessage|text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
@@ -212,19 +213,19 @@
                         tools:ignore="MissingConstraints" />
                     </RadioGroup>
 
-                <EditText
-                    android:id="@+id/textCardiac"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/shape"
-                    android:ems="10"
-                    android:hint="¿Cuáles?"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:paddingStart="20dp"
-                    android:textSize="16dp" />
+            <EditText
+                android:id="@+id/textCardiac"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="¿Cuáles?"
+                android:inputType="textShortMessage|text"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
 
 
             <TextView
@@ -257,19 +258,19 @@
                         tools:ignore="MissingConstraints" />
             </RadioGroup>
 
-                <EditText
-                    android:id="@+id/textCancer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/shape"
-                    android:ems="10"
-                    android:hint="¿Qué tipo de cáncer?"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:paddingStart="20dp"
-                    android:textSize="16dp" />
+            <EditText
+                android:id="@+id/textCancer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="¿Qué tipo de cáncer?"
+                android:inputType="textShortMessage|text"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/cirug"
@@ -300,19 +301,20 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:ignore="MissingConstraints" />
             </RadioGroup>
-                <EditText
-                    android:id="@+id/textCirug"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:background="@drawable/shape"
-                    android:ems="10"
-                    android:hint="¿Cuál?"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:paddingStart="20dp"
-                    android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/textCirug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape"
+                android:ems="10"
+                android:hint="¿Cuál?"
+                android:inputType="textShortMessage|text"
+                android:padding="8dp"
+                android:paddingStart="20dp"
+                android:textSize="16dp" />
 
 
 
@@ -356,7 +358,7 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="¿Cuál?"
-                android:inputType="text"
+                android:inputType="textShortMessage|text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
@@ -403,7 +405,7 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="¿Cuál?"
-                android:inputType="text"
+                android:inputType="textShortMessage|text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
                 android:textSize="16dp" />
@@ -428,7 +430,7 @@
                 android:background="@drawable/shape"
                 android:ems="10"
                 android:hint="NOMBRE contacto de emergencia"
-                android:inputType="text"
+                android:inputType="textPersonName|text"
                 android:padding="8dp"
                 android:paddingStart="20dp"
                 android:textSize="16dp" />

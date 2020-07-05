@@ -42,7 +42,6 @@ public class DoctorsMainActivity extends AppCompatActivity {
         buttonCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DoctorsMainActivity.this,CalendarMainActivity.class));
                 finish();
             }
         });
